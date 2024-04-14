@@ -1,0 +1,14 @@
+namespace: H2DatabaseOOo
+output:
+  file_path: ./Fluid-Attacks-Results.csv
+  format: CSV
+working_dir: .
+sast:
+  include:
+    - glob(source/H2DatabaseOOo/service/*.py)
+    - glob(source/H2DatabaseOOo/service/pythonpath/h2database/*)
+sca:
+  include:
+    - .
+language: EN
+strict: true
