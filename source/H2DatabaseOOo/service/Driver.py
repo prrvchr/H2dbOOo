@@ -27,25 +27,56 @@
 ╚════════════════════════════════════════════════════════════════════════════════════╝
 """
 
-from . import sdbc
-from . import sdbcx
+import uno
+import unohelper
 
-from .unotool import createService
-from .unotool import getConfiguration
-from .unotool import getDialog
-from .unotool import getDocument
-from .unotool import getFileSequence
-from .unotool import getPropertyValueSet
-from .unotool import getResourceLocation
-from .unotool import getSimpleFile
-from .unotool import getStringResource
+from com.sun.star.lang import XServiceInfo
 
-from .configuration import g_extension
-from .configuration import g_identifier
-from .configuration import g_catalog
-from .configuration import g_user
+from h2database import sdbc
+from h2database import sdbcx
 
-from .options import OptionsManager
+from h2database import getConfiguration
 
-from .logger import getLogger
+from h2database import g_identifier
+from h2database import g_catalog
+from h2database import g_user
+
+from threading import Lock
+import traceback
+
+# pythonloader looks for a static g_ImplementationHelper variable
+g_ImplementationHelper = unohelper.ImplementationHelper()
+g_ImplementationName = '%s.Driver' % g_identifier
+
+
+class Driver(unohelper.Base,
+             XServiceInfo):
+    def __new__(cls, ctx, *args, **kwargs):
+        if cls._instance is None:
+            with cls._lock:
+                if cls._instance is None:
+                    service = getConfiguration(ctx, g_identifier).getByName('DriverService')
+                    if service == 'io.github.prrvchr.jdbcdriver.sdbc.Driver':
+                        instance = sdbc.Driver(ctx, cls._lock, service, g_ImplementationName, g_catalog, g_user)
+                    else:
+                        instance = sdbcx.Driver(ctx, cls._lock, service, g_ImplementationName, g_catalog, g_user)
+                    cls._instance = instance
+        return cls._instance
+
+    _instance = None
+    _lock = Lock()
+
+    # XServiceInfo
+    def supportsService(self, service):
+        return g_ImplementationHelper.supportsService(g_ImplementationName, service)
+    def getImplementationName(self):
+        return g_ImplementationName
+    def getSupportedServiceNames(self):
+        return g_ImplementationHelper.getSupportedServiceNames(g_ImplementationName)
+
+
+g_ImplementationHelper.addImplementation(Driver,
+                                         g_ImplementationName,
+                                        (g_ImplementationName,
+                                        'com.sun.star.sdbc.Driver'))
 

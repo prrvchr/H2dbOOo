@@ -1,7 +1,5 @@
-#!
-# -*- coding: utf_8 -*-
-
-"""
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
 ╔════════════════════════════════════════════════════════════════════════════════════╗
 ║                                                                                    ║
 ║   Copyright (c) 2020-24 https://prrvchr.github.io                                  ║
@@ -25,27 +23,41 @@
 ║   OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                    ║
 ║                                                                                    ║
 ╚════════════════════════════════════════════════════════════════════════════════════╝
-"""
-
-from . import sdbc
-from . import sdbcx
-
-from .unotool import createService
-from .unotool import getConfiguration
-from .unotool import getDialog
-from .unotool import getDocument
-from .unotool import getFileSequence
-from .unotool import getPropertyValueSet
-from .unotool import getResourceLocation
-from .unotool import getSimpleFile
-from .unotool import getStringResource
-
-from .configuration import g_extension
-from .configuration import g_identifier
-from .configuration import g_catalog
-from .configuration import g_user
-
-from .options import OptionsManager
-
-from .logger import getLogger
-
+-->
+<description xmlns="http://openoffice.org/extensions/description/2006" xmlns:d="http://openoffice.org/extensions/description/2006" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <version value="1.0.0"/>
+    <identifier value="io.github.prrvchr.H2DatabaseOOo"/>
+    <platform value="all"/>
+    <dependencies>
+        <OpenOffice.org-minimal-version value="4.1" d:name="OpenOffice.org 4.1"/>
+    </dependencies>
+    <update-information>
+        <src xlink:href="https://prrvchr.github.io/H2DatabaseOOo/H2DatabaseOOo.update.xml"/>
+    </update-information>
+    <publisher>
+        <name xlink:href="https://prrvchr.github.io/H2DatabaseOOo/" lang="en-US">Embedded H2 Database driver for LibreOffice</name>
+        <name xlink:href="https://prrvchr.github.io/H2DatabaseOOo/README_fr" lang="fr-FR">Pilote H2 Database intégré pour LibreOffice</name>
+    </publisher>
+    <registration>
+        <simple-license accept-by="admin" suppress-on-update="true">
+            <license-text xlink:href="registration/TermsOfUse_en.md" lang="en-US"/>
+            <license-text xlink:href="registration/TermsOfUse_fr.md" lang="fr-FR"/>
+        </simple-license>
+    </registration>
+    <release-notes>
+        <src xlink:href="https://prrvchr.github.io/H2DatabaseOOo/" lang="en-US"/>
+        <src xlink:href="https://prrvchr.github.io/H2DatabaseOOo/README_fr" lang="fr-FR"/>
+    </release-notes>
+    <display-name>
+        <name lang="en-US">H2DatabaseOOo</name>
+        <name lang="fr-FR">H2DatabaseOOo</name>
+    </display-name>
+    <icon>
+        <default xlink:href="H2DatabaseOOo/H2DatabaseOOo.svg"/>
+        <high-contrast xlink:href="H2DatabaseOOo/H2DatabaseOOo.svg"/>
+    </icon>
+    <extension-description>
+        <src xlink:href="description/desc_en.txt" lang="en-US"/>
+        <src xlink:href="description/desc_fr.txt" lang="fr-FR"/>
+    </extension-description>
+</description>

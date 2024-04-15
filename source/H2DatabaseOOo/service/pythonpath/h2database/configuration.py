@@ -27,25 +27,20 @@
 ╚════════════════════════════════════════════════════════════════════════════════════╝
 """
 
-from . import sdbc
-from . import sdbcx
+# General configuration
+g_catalog = 'H2'
+g_dbname = '%sDatabase' % g_catalog
+g_extension = '%sOOo' % g_dbname
+g_identifier = 'io.github.prrvchr.%s' % g_extension
+g_resource = 'resource'
+g_basename = 'Driver'
+g_defaultlog = '%sLogger' % g_dbname
+g_errorlog = '%sError'  % g_dbname
 
-from .unotool import createService
-from .unotool import getConfiguration
-from .unotool import getDialog
-from .unotool import getDocument
-from .unotool import getFileSequence
-from .unotool import getPropertyValueSet
-from .unotool import getResourceLocation
-from .unotool import getSimpleFile
-from .unotool import getStringResource
-
-from .configuration import g_extension
-from .configuration import g_identifier
-from .configuration import g_catalog
-from .configuration import g_user
-
-from .options import OptionsManager
-
-from .logger import getLogger
+# DataBase configuration
+g_protocol = 'xdbc:h2:'
+g_url = 'sdbc:embedded:hsqldb'
+g_user = 'SA'
+g_options = ''
+g_shutdown = ''
 

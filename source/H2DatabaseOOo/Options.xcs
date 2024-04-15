@@ -1,7 +1,5 @@
-#!
-# -*- coding: utf_8 -*-
-
-"""
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
 ╔════════════════════════════════════════════════════════════════════════════════════╗
 ║                                                                                    ║
 ║   Copyright (c) 2020-24 https://prrvchr.github.io                                  ║
@@ -25,27 +23,16 @@
 ║   OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                    ║
 ║                                                                                    ║
 ╚════════════════════════════════════════════════════════════════════════════════════╝
-"""
-
-from . import sdbc
-from . import sdbcx
-
-from .unotool import createService
-from .unotool import getConfiguration
-from .unotool import getDialog
-from .unotool import getDocument
-from .unotool import getFileSequence
-from .unotool import getPropertyValueSet
-from .unotool import getResourceLocation
-from .unotool import getSimpleFile
-from .unotool import getStringResource
-
-from .configuration import g_extension
-from .configuration import g_identifier
-from .configuration import g_catalog
-from .configuration import g_user
-
-from .options import OptionsManager
-
-from .logger import getLogger
-
+-->
+<oor:component-schema
+  xml:lang="en-US"
+  xmlns:oor="http://openoffice.org/2001/registry"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  oor:package="io.github.prrvchr"
+  oor:name="H2DatabaseOOo">
+    <component>
+        <prop oor:name="DriverService" oor:type="xs:string"/>
+        <prop oor:name="ConnectionService" oor:type="xs:string"/>
+    </component>
+</oor:component-schema>
