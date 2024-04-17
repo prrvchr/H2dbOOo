@@ -145,7 +145,7 @@ ___
 
 - Tout ce qui est bienvenu...
 
-[1]: </img/h2database.svg#collapse>
+[1]: </img/h2db.svg#collapse>
 [2]: <https://prrvchr.github.io/H2dbOOo/>
 [3]: <https://prrvchr.github.io/H2dbOOo/>
 [4]: <https://prrvchr.github.io/H2dbOOo/source/H2dbOOo/registration/TermsOfUse_fr>
