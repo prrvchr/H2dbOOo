@@ -71,7 +71,7 @@ Si nécessaire, renommez-le avant de l'installer.
 
 - [![jdbcDriverOOo logo][17]][18] Installer l'extension **[jdbcDriverOOo.oxt][19]** [![Version][20]][19]
 
-    Cette extension est nécessaire pour utiliser SQLite version 3.42.0.0 avec toutes ses fonctionnalités.
+    Cette extension est nécessaire pour utiliser H2 Database avec toutes ses fonctionnalités.
 
 - ![H2dbOOo logo][21] Installer l'extension **[H2dbOOo.oxt][22]** [![Version][23]][22]
 
@@ -92,7 +92,7 @@ Dans LibreOffice / OpenOffice aller à: Fichier -> Nouveau -> Base de données..
 
 A l'étape: Sélectionner une base de données:
 - selectionner: Créer une nouvelle base de données
-- Dans: Base de données intégrée: choisir: Pilote SQLite intégré
+- Dans: Base de données intégrée: choisir: **Pilote H2 intégré**
 - cliquer sur le bouton: Suivant
 
 ![H2dbOOo screenshot 2][25]
@@ -110,16 +110,16 @@ ___
 ## Comment ça marche:
 
 H2dbOOo est un service [com.sun.star.sdbc.Driver][27] UNO écrit en Python.  
-Il s'agit d'une surcouche à l'extension [jdbcDriverOOo][18] permettant de stocker la base de données SQLite dans un fichier odb (qui est, en fait, un fichier compressé).
+Il s'agit d'une surcouche à l'extension [jdbcDriverOOo][18] permettant de stocker la base de données H2 dans un fichier odb (qui est, en fait, un fichier compressé).
 
 Son fonctionnement est assez basique, à savoir:
 
-- Lors d'une demande de connexion, trois choses sont faites:
-    1. S'il n'existe pas déjà, un **sous-répertoire** avec le nom: `.` + `nom_du_fichier_odb` + `.lck` est créé à l'emplacement du fichier odb dans lequel tous les fichiers SQLite sont extraits du répertoire **database** du fichier odb (décompression).
-    2. Un [DocumentHandler][28] est ajouté en tant que [com.sun.star.util.XCloseListener][29] et [com.sun.star.document.XStorageChangeListener][30] au fichier odb.
-    3. L'extension [jdbcDriverOOo][18] est utilisée pour obtenir l'interface [com.sun.star.sdbc.XConnection][31] à partir du chemin du **sous-répertoire** + `nom_du_fichier_odb`.
-
-- Lors de la fermeture ou du renommage (Enregistrer sous) d'un fichier odb, le [DocumentHandler][28] copie tous les fichiers présents dans le **sous-répertoire** dans le (nouveau) répertoire **database** du fichier odb (compression) puis supprime le **sous-répertoire**.
+- Lors d'une demande de connexion, plusieurs choses sont faites:
+  - S'il n'existe pas déjà, un **sous-répertoire** avec le nom: `.` + `nom_du_fichier_odb` + `.lck` est créé à l'emplacement du fichier odb dans lequel tous les fichiers H2 sont extraits du répertoire **database** du fichier odb (décompression).
+  - L'extension [jdbcDriverOOo][18] est utilisée pour obtenir l'interface [com.sun.star.sdbc.XConnection][28] à partir du chemin du **sous-répertoire** + `H2`.
+  - Si la connexion réussi, un [DocumentHandler][29] est ajouté en tant que [com.sun.star.util.XCloseListener][30] et [com.sun.star.document.XStorageChangeListener][31] au fichier odb.
+  - Si la connexion échoue et que les fichiers ont été extraits lors de la phase 1, le **sous-répertoire** est supprimé.
+- Lors de la fermeture ou du changement de nom (Enregistrer sous) du fichier odb, si la connexion a réussi, le [DocumentHandler][29] copie tous les fichiers présents dans le **sous-répertoire** dans le (nouveau) répertoire **database** du fichier odb (zip), puis supprime le **sous-répertoire**.
 
 ___
 
@@ -172,7 +172,7 @@ ___
 [25]: <img/H2dbOOo-2_fr.png>
 [26]: <img/H2dbOOo-3_fr.png>
 [27]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/Driver.html>
-[28]: <https://github.com/prrvchr/H2dbOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
-[29]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
-[30]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
-[31]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XConnection.html>
+[28]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XConnection.html>
+[29]: <https://github.com/prrvchr/H2dbOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
+[30]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
+[31]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>

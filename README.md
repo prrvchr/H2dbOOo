@@ -71,7 +71,7 @@ If necessary, rename it before installing it.
 
 - [![jdbcDriverOOo logo][17]][18] Install **[jdbcDriverOOo.oxt][190]** extension [![Version][20]][19]
 
-    This extension is necessary to use SQLite version 3.42.0.0 with all its features.
+    This extension is necessary to use H2 Database with all its features.
 
 - ![H2dbOOo logo][21] Install **[H2dbOOo.oxt][22]** extension [![Version][23]][22]
 
@@ -92,7 +92,7 @@ In LibreOffice / OpenOffice go to File -> New -> Database...:
 
 In step: Select database:
 - select: Create a new database
-- in: Emdedded database: choose: Embedded SQLite Driver
+- in: Emdedded database: choose: **Embedded H2 Driver**
 - click on button: Next
 
 ![H2dbOOo screenshot 2][25]
@@ -110,16 +110,16 @@ ___
 ## How does it work:
 
 H2dbOOo is an [com.sun.star.sdbc.Driver][27] UNO service written in Python.  
-It is an overlay to the [jdbcDriverOOo][18] extension allowing to store the SQLite database in an odb file (which is, in fact, a compressed file).
+It is an overlay to the [jdbcDriverOOo][18] extension allowing to store the H2 database in an odb file (which is, in fact, a compressed file).
 
 Its operation is quite basic, namely:
 
-- When requesting a connection, three things are done:
-    1. If it does not already exist, a **subdirectory** with name: `.` + `odb_file_name` + `.lck` is created in the location of the odb file where all SQLite files are extracted from the **database** directory of the odb file (unzip).
-    2. A [DocumentHandler][28] is added as an [com.sun.star.util.XCloseListener][29] and [com.sun.star.document.XStorageChangeListener][30] to the odb file.
-    3. The [jdbcDriverOOo][18] extension is used to get the [com.sun.star.sdbc.XConnection][31] interface from the **subdirectory** path + `odb_file_name`.
-
-- When closing or renaming (Save as) an odb file the [DocumentHandler][28] copy all the files present in the **subdirectory** into the (new) **database** directory of the odb file (zip) and then delete the **subdirectory**.
+- When requesting a connection, several things are done:
+  - If it does not already exist, a **subdirectory** with name: `.` + `odb_file_name` + `.lck` is created in the location of the odb file where all H2 files are extracted from the **database** directory of the odb file (unzip).
+  - The [jdbcDriverOOo][18] extension is used to get the [com.sun.star.sdbc.XConnection][28] interface from the **subdirectory** path + `H2`.
+  - If the connection is successful, a [DocumentHandler][29] is added as an [com.sun.star.util.XCloseListener][30] and [com.sun.star.document.XStorageChangeListener][31] to the odb file.
+  - If the connection is unsuccessful and the files was extracted in phase 1, the **subdirectory** will be deleted.
+- When closing or renaming (Save As) the odb file, if the connection was successful, the [DocumentHandler][29] copies all files present in the **subdirectory** into the (new) **database** directory of the odb file (zip), then delete the **subdirectory**.
 
 ___
 
@@ -172,7 +172,7 @@ ___
 [25]: <img/H2dbOOo-2.png>
 [26]: <img/H2dbOOo-3.png>
 [27]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/Driver.html>
-[28]: <https://github.com/prrvchr/H2dbOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
-[29]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
-[30]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
-[31]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XConnection.html>
+[28]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XConnection.html>
+[29]: <https://github.com/prrvchr/H2dbOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
+[30]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
+[31]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
