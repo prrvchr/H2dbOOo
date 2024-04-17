@@ -51,7 +51,8 @@ from .unotool import parseUrl
 from .configuration import g_protocol
 from .configuration import g_catalog
 from .configuration import g_options
-from .configuration import g_shutdown
+from .configuration import g_create
+from .configuration import g_exist
 
 import traceback
 
@@ -67,6 +68,7 @@ class DocumentHandler(unohelper.Base,
         self._lock = lock
         self._logger = logger
         self._listening = False
+        self._created = False
         self._path, self._folder = self._getDataBaseInfo(url)
         self._url = url
         self._index = index
@@ -129,9 +131,11 @@ class DocumentHandler(unohelper.Base,
             document.addCloseListener(self)
 
     def removeFolder(self):
-        sf = getSimpleFile(self._ctx)
-        if sf.isFolder(self._path):
-            sf.kill(self._path)
+        # XXX: The database folder will be deleted only if it was created
+        if self._created:
+            sf = getSimpleFile(self._ctx)
+            if sf.isFolder(self._path):
+                sf.kill(self._path)
 
     # DocumentHandler getter methods
     def getConnectionUrl(self, storage):
@@ -139,6 +143,8 @@ class DocumentHandler(unohelper.Base,
             exist = storage.hasElements()
             sf = getSimpleFile(self._ctx)
             if not sf.exists(self._path):
+                # XXX: The database folder will be deleted only if it was created
+                self._created = True
                 sf.createFolder(self._path)
                 if exist:
                     count = self._extractStorage(sf, storage, self._path)
@@ -184,8 +190,8 @@ class DocumentHandler(unohelper.Base,
 
     def _getConnectionUrl(self, exist):
         path = self._path[self._index:]
-        url = '%s%s/%s%s' % (g_protocol, path, g_catalog, g_shutdown)
-        return url if exist else url + g_options
+        url = '%s%s/%s%s' % (g_protocol, path, g_catalog, g_options)
+        return url + g_exist if exist else url + g_create
 
     def _getStorageName(self, name, oldname, newname):
         return name.replace(oldname, newname)
