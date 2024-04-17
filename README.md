@@ -29,7 +29,7 @@
 
 **The use of this software subjects you to our [Terms Of Use][4].**
 
-# version [1.0.0][5]
+# version [1.1.0][5]
 
 ## Introduction:
 
@@ -53,8 +53,9 @@ ___
 The H2dbOOo extension uses the jdbcDriverOOo extension to work.  
 It must therefore meet the [requirement of the jdbcDriverOOo extension][14].
 
-This extension cannot be installed together with the [HyperSQLOOo][15] extension.  
-It's one or the other, but at the moment they can't work together (see [issue #156471][16]).
+**Since version 1.1.0, only LibreOffice 24.2.x or higher is supported.**
+If it is not possible for you to use such a version, use the previous version of H2dbOOo. But in this case, this extension cannot be installed with the [HyperSQLOOo][15] extension, see [bug #156471][16].
+In addition, it will be difficult for you to migrate odb files created under lower versions of H2dbOOo. I recommend using LibreOffice 24.2.x minimum with H2dbOOo 1.1.0 or higher.
 
 **On Linux and macOS the Python packages** used by the extension, if already installed, may come from the system and therefore **may not be up to date**.  
 To ensure that your Python packages are up to date it is recommended to use the **System Info** option in the extension Options accessible by:  
@@ -142,7 +143,12 @@ ___
 
 - Implementation of a new format in odb files allowing the name of the catalog of the underlying database to be taken into account.
 
-### What remains to be done for version 1.0.0:
+### What has been done for version 1.1.0:
+
+- This version is based on [fix #154989][32] available since LibreOffice 24.2.x. It can therefore work with other extensions offering integrated database services.
+- Now H2dbOOo requires LibreOffice 24.2.x minimum and will load for the url: `sdbc:embedded:h2`.
+
+### What remains to be done for version 1.1.0:
 
 - Add new language for internationalization...
 
@@ -170,7 +176,7 @@ ___
 [20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [21]: <img/H2dbOOo.svg#middle>
 [22]: <https://github.com/prrvchr/H2dbOOo/releases/latest/download/H2dbOOo.oxt>
-[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.0.0#right>
+[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.1.0#right>
 [24]: <img/H2dbOOo-1.png>
 [25]: <img/H2dbOOo-2.png>
 [26]: <img/H2dbOOo-3.png>
@@ -179,3 +185,4 @@ ___
 [29]: <https://github.com/prrvchr/H2dbOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
 [30]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
 [31]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
+[32]: <https://gerrit.libreoffice.org/c/core/+/154989>

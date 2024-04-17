@@ -29,7 +29,7 @@
 
 **L'utilisation de ce logiciel vous soumet à nos [Conditions d'utilisation][4].**
 
-# version [1.0.0][5]
+# version [1.1.0][5]
 
 ## Introduction:
 
@@ -53,8 +53,9 @@ ___
 L'extension H2dbOOo utilise l'extension jdbcDriverOOo pour fonctionner.  
 Elle doit donc répondre aux [prérequis de l'extension jdbcDriverOOo][14].
 
-Cette extension ne peut pas être installée avec l'extension [HyperSQLOOo][15].  
-C'est l'une ou l'autre, mais pour le moment, elles ne peuvent pas fonctionner ensemble (voir [dysfonctionnement #156471][16]).
+**Depuis la version 1.1.0, seul LibreOffice 24.2.x ou supérieur est pris en charge.**  
+S'il ne vous est pas possible d'utiliser une telle version, utilisez la version précédente de H2dbOOo. Mais dans ce cas, cette extension ne peut pas être installée avec l'extension [HyperSQLOOo][15], voir [bug #156471][16].  
+De plus, il vous sera difficile de migrer les fichiers odb créés sous des versions inférieures de H2dbOOo. Je vous recommande d'utiliser LibreOffice 24.2.x minimum avec H2dbOOo 1.1.0 ou supérieur.
 
 **Sous Linux et macOS les paquets Python** utilisés par l'extension, peuvent s'il sont déja installé provenir du système et donc, **peuvent ne pas être à jour**.  
 Afin de s'assurer que vos paquets Python sont à jour il est recommandé d'utiliser l'option **Info système** dans les Options de l'extension accessible par:  
@@ -142,7 +143,12 @@ ___
 
 - Implémentation d'un nouveau format dans les fichiers odb permettant de prendre en compte le nom du catalogue de la base de données sous-jacente.
 
-### Que reste-t-il à faire pour la version 1.0.0:
+### Ce qui a été fait pour la version 1.1.0:
+
+- Cette version est basée sur la [correction #154989][32] disponible depuis LibreOffice 24.2.x. Elle peut donc fonctionner avec les autres extensions proposant des services de bases de données intégrées.
+- Désormais, H2dbOOo nécessite LibreOffice 24.2.x minimum et se chargera pour l'url: `sdbc:embedded:h2`.
+
+### Que reste-t-il à faire pour la version 1.1.0:
 
 - Ajouter de nouvelles langue pour l'internationalisation...
 
@@ -170,7 +176,7 @@ ___
 [20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [21]: <img/H2dbOOo.svg#middle>
 [22]: <https://github.com/prrvchr/H2dbOOo/releases/latest/download/H2dbOOo.oxt>
-[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.0.0#right>
+[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.1.0#right>
 [24]: <img/H2dbOOo-1_fr.png>
 [25]: <img/H2dbOOo-2_fr.png>
 [26]: <img/H2dbOOo-3_fr.png>
@@ -179,3 +185,4 @@ ___
 [29]: <https://github.com/prrvchr/H2dbOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
 [30]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
 [31]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
+[32]: <https://gerrit.libreoffice.org/c/core/+/154989>
