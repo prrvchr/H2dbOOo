@@ -32,7 +32,7 @@
         <OpenOffice.org-minimal-version value="4.1" d:name="OpenOffice.org 4.1"/>
     </dependencies>
     <update-information>
-        <src xlink:href="https://prrvchr.github.io/H2DatabaseOOo/H2DatabaseOOo.update.xml"/>
+        <src xlink:href="https://github.com/prrvchr/H2DatabaseOOo/releases/latest/download/H2DatabaseOOo.update.xml"/>
     </update-information>
     <publisher>
         <name xlink:href="https://prrvchr.github.io/H2DatabaseOOo/" lang="en-US">Embedded H2 Database driver for LibreOffice</name>

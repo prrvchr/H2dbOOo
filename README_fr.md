@@ -29,7 +29,7 @@
 
 **L'utilisation de ce logiciel vous soumet à nos [Conditions d'utilisation][4].**
 
-# version [1.1.3][5]
+# version [1.0.0][5]
 
 ## Introduction:
 
@@ -69,11 +69,11 @@ ___
 Il semble important que le fichier n'ait pas été renommé lors de son téléchargement.  
 Si nécessaire, renommez-le avant de l'installer.
 
-- [![jdbcDriverOOo logo][18]][19] Installer l'extension **[jdbcDriverOOo.oxt][20]** [![Version][21]][20]
+- [![jdbcDriverOOo logo][17]][18] Installer l'extension **[jdbcDriverOOo.oxt][19]** [![Version][20]][19]
 
     Cette extension est nécessaire pour utiliser SQLite version 3.42.0.0 avec toutes ses fonctionnalités.
 
-- ![H2DatabaseOOo logo][22] Installer l'extension **[H2DatabaseOOo.oxt][23]** [![Version][24]][23]
+- ![H2DatabaseOOo logo][21] Installer l'extension **[H2DatabaseOOo.oxt][22]** [![Version][23]][22]
 
 Redémarrez LibreOffice après l'installation.  
 **Attention, redémarrer LibreOffice peut ne pas suffire.**
@@ -88,20 +88,20 @@ ___
 
 Dans LibreOffice / OpenOffice aller à: Fichier -> Nouveau -> Base de données...:
 
-![H2DatabaseOOo screenshot 1][25]
+![H2DatabaseOOo screenshot 1][24]
 
 A l'étape: Sélectionner une base de données:
 - selectionner: Créer une nouvelle base de données
 - Dans: Base de données intégrée: choisir: Pilote SQLite intégré
 - cliquer sur le bouton: Suivant
 
-![H2DatabaseOOo screenshot 2][26]
+![H2DatabaseOOo screenshot 2][25]
 
 A l'étape: Enregistrer et continuer:
 - ajuster les paramètres selon vos besoins...
 - cliquer sur le bouton: Terminer
 
-![H2DatabaseOOo screenshot 3][27]
+![H2DatabaseOOo screenshot 3][26]
 
 Maintenant à vous d'en profiter...
 
@@ -109,33 +109,23 @@ ___
 
 ## Comment ça marche:
 
-H2DatabaseOOo est un service [com.sun.star.sdbc.Driver][28] UNO écrit en Python.  
-Il s'agit d'une surcouche à l'extension [jdbcDriverOOo][19] permettant de stocker la base de données SQLite dans un fichier odb (qui est, en fait, un fichier compressé).
+H2DatabaseOOo est un service [com.sun.star.sdbc.Driver][27] UNO écrit en Python.  
+Il s'agit d'une surcouche à l'extension [jdbcDriverOOo][18] permettant de stocker la base de données SQLite dans un fichier odb (qui est, en fait, un fichier compressé).
 
 Son fonctionnement est assez basique, à savoir:
 
 - Lors d'une demande de connexion, trois choses sont faites:
     1. S'il n'existe pas déjà, un **sous-répertoire** avec le nom: `.` + `nom_du_fichier_odb` + `.lck` est créé à l'emplacement du fichier odb dans lequel tous les fichiers SQLite sont extraits du répertoire **database** du fichier odb (décompression).
-    2. Un [DocumentHandler][29] est ajouté en tant que [com.sun.star.util.XCloseListener][30] et [com.sun.star.document.XStorageChangeListener][31] au fichier odb.
-    3. L'extension [jdbcDriverOOo][19] est utilisée pour obtenir l'interface [com.sun.star.sdbc.XConnection][32] à partir du chemin du **sous-répertoire** + `nom_du_fichier_odb`.
+    2. Un [DocumentHandler][28] est ajouté en tant que [com.sun.star.util.XCloseListener][29] et [com.sun.star.document.XStorageChangeListener][30] au fichier odb.
+    3. L'extension [jdbcDriverOOo][18] est utilisée pour obtenir l'interface [com.sun.star.sdbc.XConnection][31] à partir du chemin du **sous-répertoire** + `nom_du_fichier_odb`.
 
-- Lors de la fermeture ou du renommage (Enregistrer sous) d'un fichier odb, le [DocumentHandler][29] copie tous les fichiers présents dans le **sous-répertoire** dans le (nouveau) répertoire **database** du fichier odb (compression) puis supprime le **sous-répertoire**.
+- Lors de la fermeture ou du renommage (Enregistrer sous) d'un fichier odb, le [DocumentHandler][28] copie tous les fichiers présents dans le **sous-répertoire** dans le (nouveau) répertoire **database** du fichier odb (compression) puis supprime le **sous-répertoire**.
 
 ___
 
 ## A été testé avec:
 
-* OpenOffice 4.1.8 - Ubuntu 20.04 - LxQt 0.14.1
-
-* OpenOffice 4.1.8 - Windows 7 SP1
-
-* LibreOffice 7.0.4.2 - Ubuntu 20.04 - LxQt 0.14.1
-
-* LibreOffice 6.4.4.2 - Windows 7 SP1
-
-* LibreOffice 7.6.0.1 - Windows 10
-
-* LibreOffice 7.6.0.1 - Ubuntu 22.04
+* LibreOffice 7.3.7.2 - Ubuntu 22.04
 
 Je vous encourage en cas de problème :confused:  
 de créer un [dysfonctionnement][13]  
@@ -147,7 +137,7 @@ ___
 
 ### Ce qui a été fait pour la version 1.0.0:
 
-- Intégration de SQLite JDBC version 3.42.0.0. Je tiens tout particulièrement à remercier [gotson][33] pour les [nombreuses améliorations apportées au pilote SQLite JDBC][34] qui ont rendu possible l'utilisation de SQLite dans LibreOffice/OpenOffice.
+- Implémentation d'un nouveau format dans les fichiers odb permettant de prendre en compte le nom du catalogue de la base de données sous-jacente.
 
 ### Que reste-t-il à faire pour la version 1.0.0:
 
@@ -155,7 +145,7 @@ ___
 
 - Tout ce qui est bienvenu...
 
-[1]: </img/sqlite.svg#collapse>
+[1]: </img/h2database.svg#collapse>
 [2]: <https://prrvchr.github.io/H2DatabaseOOo/>
 [3]: <https://prrvchr.github.io/H2DatabaseOOo/>
 [4]: <https://prrvchr.github.io/H2DatabaseOOo/source/H2DatabaseOOo/registration/TermsOfUse_fr>
@@ -163,38 +153,26 @@ ___
 [6]: <https://prrvchr.github.io/README_fr>
 [7]: <https://fr.libreoffice.org/download/telecharger-libreoffice/>
 [8]: <https://www.openoffice.org/fr/Telecharger/>
-[9]: <https://github.com/xerial/sqlite-jdbc>
+[9]: <https://github.com/h2database/h2database>
 [10]: <https://en.wikipedia.org/wiki/ACID>
-[11]: <https://www.sqlite.org/transactional.html>
+[11]: <https://www.h2database.com/html/features.html#logging_recovery>
 [12]: <https://github.com/prrvchr/H2DatabaseOOo/>
 [13]: <https://github.com/prrvchr/H2DatabaseOOo/issues/new>
 [14]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr#pr%C3%A9requis>
-[15]: <https://prrvchr.github.io/HyperSQLOOo/README_fr#prérequis>
+[15]: <https://prrvchr.github.io/HyperSQLOOo/README_fr#pr%C3%A9requis>
 [16]: <https://bugs.documentfoundation.org/show_bug.cgi?id=156471>
-
-[18]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
-[19]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr>
-[20]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
-[21]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
-[22]: <img/H2DatabaseOOo.svg#middle>
-[23]: <https://github.com/prrvchr/H2DatabaseOOo/releases/latest/download/H2DatabaseOOo.oxt>
-[24]: <https://img.shields.io/github/downloads/prrvchr/H2DatabaseOOo/latest/total?label=v1.0.0#right>
-[25]: <img/H2DatabaseOOo-1_fr.png>
-[26]: <img/H2DatabaseOOo-2_fr.png>
-[27]: <img/H2DatabaseOOo-3_fr.png>
-[28]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/Driver.html>
-[29]: <https://github.com/prrvchr/H2DatabaseOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
-[30]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
-[31]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
-[32]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XConnection.html>
-[33]: <https://github.com/gotson>
-[34]: <https://github.com/xerial/sqlite-jdbc/issues/786>
-[35]: <https://bugs.documentfoundation.org/show_bug.cgi?id=156511>
-[36]: <https://github.com/prrvchr/uno/commit/a2fa9f5975a35e8447907e51b0f78ac1b1b76e17>
-[37]: <https://github.com/prrvchr/H2DatabaseOOo/releases/latest/download/requirements.txt>
-[38]: <https://peps.python.org/pep-0508/>
-[39]: <https://prrvchr.github.io/H2DatabaseOOo/README_fr#pr%C3%A9requis>
-[40]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-112>
-[41]: <https://github.com/prrvchr/sqlite-jdbc/releases/download/3.45.1.3-SNAPSHOT/sqlite-jdbc-3.45.1.3-SNAPSHOT.jar>
-[42]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XGeneratedResultSet.html>
-[43]: <https://github.com/prrvchr/sqlite-jdbc/releases/download/3.45.1.6-SNAPSHOT/sqlite-jdbc-3.45.1.6-SNAPSHOT.jar>
+[17]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
+[18]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr>
+[19]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
+[20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
+[21]: <img/H2DatabaseOOo.svg#middle>
+[22]: <https://github.com/prrvchr/H2DatabaseOOo/releases/latest/download/H2DatabaseOOo.oxt>
+[23]: <https://img.shields.io/github/downloads/prrvchr/H2DatabaseOOo/latest/total?label=v1.0.0#right>
+[24]: <img/H2DatabaseOOo-1_fr.png>
+[25]: <img/H2DatabaseOOo-2_fr.png>
+[26]: <img/H2DatabaseOOo-3_fr.png>
+[27]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/Driver.html>
+[28]: <https://github.com/prrvchr/H2DatabaseOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
+[29]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
+[30]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
+[31]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XConnection.html>

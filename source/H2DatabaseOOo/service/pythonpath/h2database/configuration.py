@@ -42,5 +42,6 @@ g_protocol = 'xdbc:h2:'
 g_url = 'sdbc:embedded:hsqldb'
 g_user = 'SA'
 g_options = ''
-g_shutdown = ''
+g_create = ''
+g_exist = ';IFEXISTS=TRUE'
 

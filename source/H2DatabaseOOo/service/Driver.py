@@ -38,8 +38,6 @@ from h2database import sdbcx
 from h2database import getConfiguration
 
 from h2database import g_identifier
-from h2database import g_catalog
-from h2database import g_user
 
 from threading import Lock
 import traceback
@@ -57,9 +55,9 @@ class Driver(unohelper.Base,
                 if cls._instance is None:
                     service = getConfiguration(ctx, g_identifier).getByName('DriverService')
                     if service == 'io.github.prrvchr.jdbcdriver.sdbc.Driver':
-                        instance = sdbc.Driver(ctx, cls._lock, service, g_ImplementationName, g_catalog, g_user)
+                        instance = sdbc.Driver(ctx, cls._lock, service, g_ImplementationName)
                     else:
-                        instance = sdbcx.Driver(ctx, cls._lock, service, g_ImplementationName, g_catalog, g_user)
+                        instance = sdbcx.Driver(ctx, cls._lock, service, g_ImplementationName)
                     cls._instance = instance
         return cls._instance
 

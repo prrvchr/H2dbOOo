@@ -29,7 +29,7 @@
 
 **The use of this software subjects you to our [Terms Of Use][4].**
 
-# version [1.1.3][5]
+# version [1.0.0][5]
 
 ## Introduction:
 
@@ -69,11 +69,11 @@ ___
 It seems important that the file was not renamed when it was downloaded.  
 If necessary, rename it before installing it.
 
-- [![jdbcDriverOOo logo][18]][19] Install **[jdbcDriverOOo.oxt][20]** extension [![Version][21]][20]
+- [![jdbcDriverOOo logo][17]][18] Install **[jdbcDriverOOo.oxt][190]** extension [![Version][20]][19]
 
     This extension is necessary to use SQLite version 3.42.0.0 with all its features.
 
-- ![H2DatabaseOOo logo][22] Install **[H2DatabaseOOo.oxt][23]** extension [![Version][24]][23]
+- ![H2DatabaseOOo logo][21] Install **[H2DatabaseOOo.oxt][22]** extension [![Version][23]][22]
 
 Restart LibreOffice after installation.  
 **Be careful, restarting LibreOffice may not be enough.**
@@ -88,20 +88,20 @@ ___
 
 In LibreOffice / OpenOffice go to File -> New -> Database...:
 
-![H2DatabaseOOo screenshot 1][25]
+![H2DatabaseOOo screenshot 1][24]
 
 In step: Select database:
 - select: Create a new database
 - in: Emdedded database: choose: Embedded SQLite Driver
 - click on button: Next
 
-![H2DatabaseOOo screenshot 2][26]
+![H2DatabaseOOo screenshot 2][25]
 
 In step: Save and proceed:
 - adjust the parameters according to your needs...
 - click on button: Finish
 
-![H2DatabaseOOo screenshot 3][27]
+![H2DatabaseOOo screenshot 3][26]
 
 Have fun...
 
@@ -109,33 +109,23 @@ ___
 
 ## How does it work:
 
-H2DatabaseOOo is an [com.sun.star.sdbc.Driver][28] UNO service written in Python.  
-It is an overlay to the [jdbcDriverOOo][19] extension allowing to store the SQLite database in an odb file (which is, in fact, a compressed file).
+H2DatabaseOOo is an [com.sun.star.sdbc.Driver][27] UNO service written in Python.  
+It is an overlay to the [jdbcDriverOOo][18] extension allowing to store the SQLite database in an odb file (which is, in fact, a compressed file).
 
 Its operation is quite basic, namely:
 
 - When requesting a connection, three things are done:
     1. If it does not already exist, a **subdirectory** with name: `.` + `odb_file_name` + `.lck` is created in the location of the odb file where all SQLite files are extracted from the **database** directory of the odb file (unzip).
-    2. A [DocumentHandler][29] is added as an [com.sun.star.util.XCloseListener][30] and [com.sun.star.document.XStorageChangeListener][31] to the odb file.
-    3. The [jdbcDriverOOo][19] extension is used to get the [com.sun.star.sdbc.XConnection][32] interface from the **subdirectory** path + `odb_file_name`.
+    2. A [DocumentHandler][28] is added as an [com.sun.star.util.XCloseListener][29] and [com.sun.star.document.XStorageChangeListener][30] to the odb file.
+    3. The [jdbcDriverOOo][18] extension is used to get the [com.sun.star.sdbc.XConnection][31] interface from the **subdirectory** path + `odb_file_name`.
 
-- When closing or renaming (Save as) an odb file the [DocumentHandler][29] copy all the files present in the **subdirectory** into the (new) **database** directory of the odb file (zip) and then delete the **subdirectory**.
+- When closing or renaming (Save as) an odb file the [DocumentHandler][28] copy all the files present in the **subdirectory** into the (new) **database** directory of the odb file (zip) and then delete the **subdirectory**.
 
 ___
 
 ## Has been tested with:
 
-* OpenOffice 4.1.8 - Ubuntu 20.04 - LxQt 0.14.1
-
-* OpenOffice 4.1.8 - Windows 7 SP1
-
-* LibreOffice 7.0.4.2 - Ubuntu 20.04 - LxQt 0.14.1
-
-* LibreOffice 6.4.4.2 - Windows 7 SP1
-
-* LibreOffice 7.6.0.1 - Windows 10
-
-* LibreOffice 7.6.0.1 - Ubuntu 22.04
+* LibreOffice 7.3.7.2 - Ubuntu 22.04
 
 I encourage you in case of problem :confused:  
 to create an [issue][13]  
@@ -147,7 +137,7 @@ ___
 
 ### What has been done for version 1.0.0:
 
-
+- Implementation of a new format in odb files allowing the name of the catalog of the underlying database to be taken into account.
 
 ### What remains to be done for version 1.0.0:
 
@@ -155,7 +145,7 @@ ___
 
 - Anything welcome...
 
-[1]: </img/sqlite.svg#collapse>
+[1]: </img/h2database.svg#collapse>
 [2]: <https://prrvchr.github.io/H2DatabaseOOo/>
 [3]: <https://prrvchr.github.io/H2DatabaseOOo/README_fr>
 [4]: <https://prrvchr.github.io/H2DatabaseOOo/source/H2DatabaseOOo/registration/TermsOfUse_en>
@@ -163,38 +153,26 @@ ___
 [6]: <https://prrvchr.github.io/>
 [7]: <https://www.libreoffice.org/download/download/>
 [8]: <https://www.openoffice.org/download/index.html>
-[9]: <https://github.com/xerial/sqlite-jdbc>
+[9]: <https://github.com/h2database/h2database>
 [10]: <https://en.wikipedia.org/wiki/ACID>
-[11]: <https://www.sqlite.org/transactional.html>
+[11]: <https://www.h2database.com/html/features.html#logging_recovery>
 [12]: <https://github.com/prrvchr/H2DatabaseOOo/>
 [13]: <https://github.com/prrvchr/H2DatabaseOOo/issues/new>
 [14]: <https://prrvchr.github.io/jdbcDriverOOo/#requirement>
 [15]: <https://prrvchr.github.io/HyperSQLOOo/#requirement>
 [16]: <https://bugs.documentfoundation.org/show_bug.cgi?id=156471>
-
-[18]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
-[19]: <https://prrvchr.github.io/jdbcDriverOOo>
-[20]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
-[21]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
-[22]: <img/H2DatabaseOOo.svg#middle>
-[23]: <https://github.com/prrvchr/H2DatabaseOOo/releases/latest/download/H2DatabaseOOo.oxt>
-[24]: <https://img.shields.io/github/downloads/prrvchr/H2DatabaseOOo/latest/total?label=v1.0.0#right>
-[25]: <img/H2DatabaseOOo-1.png>
-[26]: <img/H2DatabaseOOo-2.png>
-[27]: <img/H2DatabaseOOo-3.png>
-[28]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/Driver.html>
-[29]: <https://github.com/prrvchr/H2DatabaseOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
-[30]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
-[31]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
-[32]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XConnection.html>
-[33]: <https://github.com/gotson>
-[34]: <https://github.com/xerial/sqlite-jdbc/issues/786>
-[35]: <https://bugs.documentfoundation.org/show_bug.cgi?id=156511>
-[36]: <https://github.com/prrvchr/uno/commit/a2fa9f5975a35e8447907e51b0f78ac1b1b76e17>
-[37]: <https://github.com/prrvchr/H2DatabaseOOo/releases/latest/download/requirements.txt>
-[38]: <https://peps.python.org/pep-0508/>
-[39]: <https://prrvchr.github.io/H2DatabaseOOo/#requirement>
-[40]: <https://prrvchr.github.io/jdbcDriverOOo/#what-has-been-done-for-version-112>
-[41]: <https://github.com/prrvchr/sqlite-jdbc/releases/download/3.45.1.3-SNAPSHOT/sqlite-jdbc-3.45.1.3-SNAPSHOT.jar>
-[42]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XGeneratedResultSet.html>
-[43]: <https://github.com/prrvchr/sqlite-jdbc/releases/download/3.45.1.6-SNAPSHOT/sqlite-jdbc-3.45.1.6-SNAPSHOT.jar>
+[17]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
+[18]: <https://prrvchr.github.io/jdbcDriverOOo>
+[19]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
+[20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
+[21]: <img/H2DatabaseOOo.svg#middle>
+[22]: <https://github.com/prrvchr/H2DatabaseOOo/releases/latest/download/H2DatabaseOOo.oxt>
+[23]: <https://img.shields.io/github/downloads/prrvchr/H2DatabaseOOo/latest/total?label=v1.0.0#right>
+[24]: <img/H2DatabaseOOo-1.png>
+[25]: <img/H2DatabaseOOo-2.png>
+[26]: <img/H2DatabaseOOo-3.png>
+[27]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/Driver.html>
+[28]: <https://github.com/prrvchr/H2DatabaseOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
+[29]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
+[30]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
+[31]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XConnection.html>

@@ -58,7 +58,7 @@ class OptionsHandler(unohelper.Base,
             handled = False
             if method == 'external_event':
                 if event == 'initialize':
-                    self._manager = OptionsManager(self._ctx, window, 'xdbc:hsqldb:mem:dbversion')
+                    self._manager = OptionsManager(self._ctx, window, 'xdbc:h2:mem:dbversion')
                     handled = True
                 elif event == 'ok':
                     self._manager.saveSetting()
