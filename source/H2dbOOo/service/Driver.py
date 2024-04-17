@@ -1,5 +1,7 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!--
+#!
+# -*- coding: utf_8 -*-
+
+"""
 ╔════════════════════════════════════════════════════════════════════════════════════╗
 ║                                                                                    ║
 ║   Copyright (c) 2020-24 https://prrvchr.github.io                                  ║
@@ -23,18 +25,56 @@
 ║   OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                    ║
 ║                                                                                    ║
 ╚════════════════════════════════════════════════════════════════════════════════════╝
--->
-<oor:component-data
-  xml:lang="en-US"
-  xmlns:oor="http://openoffice.org/2001/registry"
-  xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  oor:package="io.github.prrvchr"
-  oor:name="H2DatabaseOOo">
-    <prop oor:name="DriverService" oor:op="fuse">
-        <value>io.github.prrvchr.jdbcdriver.sdbcx.Driver</value>
-    </prop>
-    <prop oor:name="ConnectionService" oor:op="fuse">
-        <value>com.sun.star.sdb.Connection</value>
-    </prop>
-</oor:component-data>
+"""
+
+import uno
+import unohelper
+
+from com.sun.star.lang import XServiceInfo
+
+from h2db import sdbc
+from h2db import sdbcx
+
+from h2db import getConfiguration
+
+from h2db import g_identifier
+
+from threading import Lock
+import traceback
+
+# pythonloader looks for a static g_ImplementationHelper variable
+g_ImplementationHelper = unohelper.ImplementationHelper()
+g_ImplementationName = '%s.Driver' % g_identifier
+
+
+class Driver(unohelper.Base,
+             XServiceInfo):
+    def __new__(cls, ctx, *args, **kwargs):
+        if cls._instance is None:
+            with cls._lock:
+                if cls._instance is None:
+                    service = getConfiguration(ctx, g_identifier).getByName('DriverService')
+                    if service == 'io.github.prrvchr.jdbcdriver.sdbc.Driver':
+                        instance = sdbc.Driver(ctx, cls._lock, service, g_ImplementationName)
+                    else:
+                        instance = sdbcx.Driver(ctx, cls._lock, service, g_ImplementationName)
+                    cls._instance = instance
+        return cls._instance
+
+    _instance = None
+    _lock = Lock()
+
+    # XServiceInfo
+    def supportsService(self, service):
+        return g_ImplementationHelper.supportsService(g_ImplementationName, service)
+    def getImplementationName(self):
+        return g_ImplementationName
+    def getSupportedServiceNames(self):
+        return g_ImplementationHelper.getSupportedServiceNames(g_ImplementationName)
+
+
+g_ImplementationHelper.addImplementation(Driver,
+                                         g_ImplementationName,
+                                        (g_ImplementationName,
+                                        'com.sun.star.sdbc.Driver'))
+

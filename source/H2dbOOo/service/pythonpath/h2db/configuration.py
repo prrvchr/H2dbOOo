@@ -29,7 +29,7 @@
 
 # General configuration
 g_catalog = 'H2'
-g_dbname = '%sDatabase' % g_catalog
+g_dbname = '%sdb' % g_catalog
 g_extension = '%sOOo' % g_dbname
 g_identifier = 'io.github.prrvchr.%s' % g_extension
 g_resource = 'resource'

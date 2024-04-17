@@ -23,7 +23,7 @@
 ║                                                                                    ║
 ╚════════════════════════════════════════════════════════════════════════════════════╝
 -->
-# [![H2DatabaseOOo logo][1]][2] Documentation
+# [![H2dbOOo logo][1]][2] Documentation
 
 **Ce [document][3] en français.**
 
@@ -33,7 +33,7 @@
 
 ## Introduction:
 
-**H2DatabaseOOo** is part of a [Suite][6] of [LibreOffice][7] ~~and/or [OpenOffice][8]~~ extensions allowing to offer you innovative services in these office suites.  
+**H2dbOOo** is part of a [Suite][6] of [LibreOffice][7] ~~and/or [OpenOffice][8]~~ extensions allowing to offer you innovative services in these office suites.  
 
 This extension allows you to use [H2 Database][9] in embedded mode, making the database portable (a single odb file).  
 It allows you to take advantage of the [ACID][10] properties of the underlying [H2 Database][11] database.
@@ -50,7 +50,7 @@ ___
 
 ## Requirement:
 
-The H2DatabaseOOo extension uses the jdbcDriverOOo extension to work.  
+The H2dbOOo extension uses the jdbcDriverOOo extension to work.  
 It must therefore meet the [requirement of the jdbcDriverOOo extension][14].
 
 This extension cannot be installed together with the [HyperSQLOOo][15] extension.  
@@ -73,7 +73,7 @@ If necessary, rename it before installing it.
 
     This extension is necessary to use SQLite version 3.42.0.0 with all its features.
 
-- ![H2DatabaseOOo logo][21] Install **[H2DatabaseOOo.oxt][22]** extension [![Version][23]][22]
+- ![H2dbOOo logo][21] Install **[H2dbOOo.oxt][22]** extension [![Version][23]][22]
 
 Restart LibreOffice after installation.  
 **Be careful, restarting LibreOffice may not be enough.**
@@ -88,20 +88,20 @@ ___
 
 In LibreOffice / OpenOffice go to File -> New -> Database...:
 
-![H2DatabaseOOo screenshot 1][24]
+![H2dbOOo screenshot 1][24]
 
 In step: Select database:
 - select: Create a new database
 - in: Emdedded database: choose: Embedded SQLite Driver
 - click on button: Next
 
-![H2DatabaseOOo screenshot 2][25]
+![H2dbOOo screenshot 2][25]
 
 In step: Save and proceed:
 - adjust the parameters according to your needs...
 - click on button: Finish
 
-![H2DatabaseOOo screenshot 3][26]
+![H2dbOOo screenshot 3][26]
 
 Have fun...
 
@@ -109,7 +109,7 @@ ___
 
 ## How does it work:
 
-H2DatabaseOOo is an [com.sun.star.sdbc.Driver][27] UNO service written in Python.  
+H2dbOOo is an [com.sun.star.sdbc.Driver][27] UNO service written in Python.  
 It is an overlay to the [jdbcDriverOOo][18] extension allowing to store the SQLite database in an odb file (which is, in fact, a compressed file).
 
 Its operation is quite basic, namely:
@@ -146,18 +146,18 @@ ___
 - Anything welcome...
 
 [1]: </img/h2database.svg#collapse>
-[2]: <https://prrvchr.github.io/H2DatabaseOOo/>
-[3]: <https://prrvchr.github.io/H2DatabaseOOo/README_fr>
-[4]: <https://prrvchr.github.io/H2DatabaseOOo/source/H2DatabaseOOo/registration/TermsOfUse_en>
-[5]: <https://prrvchr.github.io/H2DatabaseOOo#historical>
+[2]: <https://prrvchr.github.io/H2dbOOo/>
+[3]: <https://prrvchr.github.io/H2dbOOo/README_fr>
+[4]: <https://prrvchr.github.io/H2dbOOo/source/H2dbOOo/registration/TermsOfUse_en>
+[5]: <https://prrvchr.github.io/H2dbOOo#historical>
 [6]: <https://prrvchr.github.io/>
 [7]: <https://www.libreoffice.org/download/download/>
 [8]: <https://www.openoffice.org/download/index.html>
 [9]: <https://github.com/h2database/h2database>
 [10]: <https://en.wikipedia.org/wiki/ACID>
 [11]: <https://www.h2database.com/html/features.html#logging_recovery>
-[12]: <https://github.com/prrvchr/H2DatabaseOOo/>
-[13]: <https://github.com/prrvchr/H2DatabaseOOo/issues/new>
+[12]: <https://github.com/prrvchr/H2dbOOo/>
+[13]: <https://github.com/prrvchr/H2dbOOo/issues/new>
 [14]: <https://prrvchr.github.io/jdbcDriverOOo/#requirement>
 [15]: <https://prrvchr.github.io/HyperSQLOOo/#requirement>
 [16]: <https://bugs.documentfoundation.org/show_bug.cgi?id=156471>
@@ -165,14 +165,14 @@ ___
 [18]: <https://prrvchr.github.io/jdbcDriverOOo>
 [19]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
 [20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
-[21]: <img/H2DatabaseOOo.svg#middle>
-[22]: <https://github.com/prrvchr/H2DatabaseOOo/releases/latest/download/H2DatabaseOOo.oxt>
-[23]: <https://img.shields.io/github/downloads/prrvchr/H2DatabaseOOo/latest/total?label=v1.0.0#right>
-[24]: <img/H2DatabaseOOo-1.png>
-[25]: <img/H2DatabaseOOo-2.png>
-[26]: <img/H2DatabaseOOo-3.png>
+[21]: <img/H2dbOOo.svg#middle>
+[22]: <https://github.com/prrvchr/H2dbOOo/releases/latest/download/H2dbOOo.oxt>
+[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.0.0#right>
+[24]: <img/H2dbOOo-1.png>
+[25]: <img/H2dbOOo-2.png>
+[26]: <img/H2dbOOo-3.png>
 [27]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/Driver.html>
-[28]: <https://github.com/prrvchr/H2DatabaseOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
+[28]: <https://github.com/prrvchr/H2dbOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
 [29]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
 [30]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
 [31]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XConnection.html>

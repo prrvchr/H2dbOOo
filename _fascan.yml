@@ -1,12 +1,12 @@
-namespace: H2DatabaseOOo
+namespace: H2dbOOo
 output:
   file_path: ./Fluid-Attacks-Results.csv
   format: CSV
 working_dir: .
 sast:
   include:
-    - glob(source/H2DatabaseOOo/service/*.py)
-    - glob(source/H2DatabaseOOo/service/pythonpath/h2database/*)
+    - glob(source/H2dbOOo/service/*.py)
+    - glob(source/H2dbOOo/service/pythonpath/h2db/*)
 sca:
   include:
     - .

@@ -7,19 +7,19 @@ veuillez consulter la **[documentation][2]**.
 
 ## Introduction:
 
-La bibliothèque H2DatabaseOOo fait partie d'un projet personnel.
+La bibliothèque H2dbOOo fait partie d'un projet personnel.
 
 ___
 ## Responsabilités:
 
-H2DatabaseOOo est distribué dans l'espoir qu'il sera utile,
+H2dbOOo est distribué dans l'espoir qu'il sera utile,
 mais **SANS AUCUNE GARANTIE**; sans même la garantie implicite de
 **QUALITÉ MARCHANDE** ou **ADAPTATION À UN USAGE PARTICULIER**.
 
 ___
 ## Licence:
 
-H2DatabaseOOo est un logiciel gratuit; Vous pouvez le redistribuer et/ou
+H2dbOOo est un logiciel gratuit; Vous pouvez le redistribuer et/ou
 le modifier selon les termes (à votre choix):
 
 - La [Licence Publique Mozilla version 2.0][3].
@@ -27,7 +27,7 @@ le modifier selon les termes (à votre choix):
 - La GNU [Lesser General Public License][4] publiée par La Free Software Foundation,
 soit la version 3 de la Licence, soit (selon votre choix) toute version ultérieure.
 
-[1]: <https://prrvchr.github.io/H2DatabaseOOo/source/H2DatabaseOOo/registration/TermsOfUse_en>
-[2]: <https://prrvchr.github.io/H2DatabaseOOo/README_fr>
+[1]: <https://prrvchr.github.io/H2dbOOo/source/H2dbOOo/registration/TermsOfUse_en>
+[2]: <https://prrvchr.github.io/H2dbOOo/README_fr>
 [3]: <http://mozilla.org/MPL/2.0/>
 [4]: <http://www.gnu.org/licenses/lgpl-3.0.html>

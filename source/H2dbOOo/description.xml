@@ -1,7 +1,5 @@
-#!
-# -*- coding: utf_8 -*-
-
-"""
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
 ╔════════════════════════════════════════════════════════════════════════════════════╗
 ║                                                                                    ║
 ║   Copyright (c) 2020-24 https://prrvchr.github.io                                  ║
@@ -25,56 +23,41 @@
 ║   OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                    ║
 ║                                                                                    ║
 ╚════════════════════════════════════════════════════════════════════════════════════╝
-"""
-
-import uno
-import unohelper
-
-from com.sun.star.lang import XServiceInfo
-
-from h2database import sdbc
-from h2database import sdbcx
-
-from h2database import getConfiguration
-
-from h2database import g_identifier
-
-from threading import Lock
-import traceback
-
-# pythonloader looks for a static g_ImplementationHelper variable
-g_ImplementationHelper = unohelper.ImplementationHelper()
-g_ImplementationName = '%s.Driver' % g_identifier
-
-
-class Driver(unohelper.Base,
-             XServiceInfo):
-    def __new__(cls, ctx, *args, **kwargs):
-        if cls._instance is None:
-            with cls._lock:
-                if cls._instance is None:
-                    service = getConfiguration(ctx, g_identifier).getByName('DriverService')
-                    if service == 'io.github.prrvchr.jdbcdriver.sdbc.Driver':
-                        instance = sdbc.Driver(ctx, cls._lock, service, g_ImplementationName)
-                    else:
-                        instance = sdbcx.Driver(ctx, cls._lock, service, g_ImplementationName)
-                    cls._instance = instance
-        return cls._instance
-
-    _instance = None
-    _lock = Lock()
-
-    # XServiceInfo
-    def supportsService(self, service):
-        return g_ImplementationHelper.supportsService(g_ImplementationName, service)
-    def getImplementationName(self):
-        return g_ImplementationName
-    def getSupportedServiceNames(self):
-        return g_ImplementationHelper.getSupportedServiceNames(g_ImplementationName)
-
-
-g_ImplementationHelper.addImplementation(Driver,
-                                         g_ImplementationName,
-                                        (g_ImplementationName,
-                                        'com.sun.star.sdbc.Driver'))
-
+-->
+<description xmlns="http://openoffice.org/extensions/description/2006" xmlns:d="http://openoffice.org/extensions/description/2006" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <version value="1.0.0"/>
+    <identifier value="io.github.prrvchr.H2dbOOo"/>
+    <platform value="all"/>
+    <dependencies>
+        <OpenOffice.org-minimal-version value="4.1" d:name="OpenOffice.org 4.1"/>
+    </dependencies>
+    <update-information>
+        <src xlink:href="https://github.com/prrvchr/H2dbOOo/releases/latest/download/H2dbOOo.update.xml"/>
+    </update-information>
+    <publisher>
+        <name xlink:href="https://prrvchr.github.io/H2dbOOo/" lang="en-US">Embedded H2 Database driver for LibreOffice</name>
+        <name xlink:href="https://prrvchr.github.io/H2dbOOo/README_fr" lang="fr-FR">Pilote H2 Database intégré pour LibreOffice</name>
+    </publisher>
+    <registration>
+        <simple-license accept-by="admin" suppress-on-update="true">
+            <license-text xlink:href="registration/TermsOfUse_en.md" lang="en-US"/>
+            <license-text xlink:href="registration/TermsOfUse_fr.md" lang="fr-FR"/>
+        </simple-license>
+    </registration>
+    <release-notes>
+        <src xlink:href="https://prrvchr.github.io/H2dbOOo/" lang="en-US"/>
+        <src xlink:href="https://prrvchr.github.io/H2dbOOo/README_fr" lang="fr-FR"/>
+    </release-notes>
+    <display-name>
+        <name lang="en-US">H2dbOOo</name>
+        <name lang="fr-FR">H2dbOOo</name>
+    </display-name>
+    <icon>
+        <default xlink:href="H2dbOOo/H2dbOOo.svg"/>
+        <high-contrast xlink:href="H2dbOOo/H2dbOOo.svg"/>
+    </icon>
+    <extension-description>
+        <src xlink:href="description/desc_en.txt" lang="en-US"/>
+        <src xlink:href="description/desc_fr.txt" lang="fr-FR"/>
+    </extension-description>
+</description>

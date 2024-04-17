@@ -34,9 +34,9 @@ from com.sun.star.awt import XContainerWindowEventHandler
 
 from com.sun.star.lang import XServiceInfo
 
-from h2database import OptionsManager
+from h2db import OptionsManager
 
-from h2database import g_identifier
+from h2db import g_identifier
 
 import traceback
 

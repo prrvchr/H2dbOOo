@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!--
 ╔════════════════════════════════════════════════════════════════════════════════════╗
 ║                                                                                    ║
@@ -24,40 +24,17 @@
 ║                                                                                    ║
 ╚════════════════════════════════════════════════════════════════════════════════════╝
 -->
-<description xmlns="http://openoffice.org/extensions/description/2006" xmlns:d="http://openoffice.org/extensions/description/2006" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <version value="1.0.0"/>
-    <identifier value="io.github.prrvchr.H2DatabaseOOo"/>
-    <platform value="all"/>
-    <dependencies>
-        <OpenOffice.org-minimal-version value="4.1" d:name="OpenOffice.org 4.1"/>
-    </dependencies>
-    <update-information>
-        <src xlink:href="https://github.com/prrvchr/H2DatabaseOOo/releases/latest/download/H2DatabaseOOo.update.xml"/>
-    </update-information>
-    <publisher>
-        <name xlink:href="https://prrvchr.github.io/H2DatabaseOOo/" lang="en-US">Embedded H2 Database driver for LibreOffice</name>
-        <name xlink:href="https://prrvchr.github.io/H2DatabaseOOo/README_fr" lang="fr-FR">Pilote H2 Database intégré pour LibreOffice</name>
-    </publisher>
-    <registration>
-        <simple-license accept-by="admin" suppress-on-update="true">
-            <license-text xlink:href="registration/TermsOfUse_en.md" lang="en-US"/>
-            <license-text xlink:href="registration/TermsOfUse_fr.md" lang="fr-FR"/>
-        </simple-license>
-    </registration>
-    <release-notes>
-        <src xlink:href="https://prrvchr.github.io/H2DatabaseOOo/" lang="en-US"/>
-        <src xlink:href="https://prrvchr.github.io/H2DatabaseOOo/README_fr" lang="fr-FR"/>
-    </release-notes>
-    <display-name>
-        <name lang="en-US">H2DatabaseOOo</name>
-        <name lang="fr-FR">H2DatabaseOOo</name>
-    </display-name>
-    <icon>
-        <default xlink:href="H2DatabaseOOo/H2DatabaseOOo.svg"/>
-        <high-contrast xlink:href="H2DatabaseOOo/H2DatabaseOOo.svg"/>
-    </icon>
-    <extension-description>
-        <src xlink:href="description/desc_en.txt" lang="en-US"/>
-        <src xlink:href="description/desc_fr.txt" lang="fr-FR"/>
-    </extension-description>
-</description>
+<oor:component-data
+  xml:lang="en-US"
+  xmlns:oor="http://openoffice.org/2001/registry"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  oor:package="io.github.prrvchr"
+  oor:name="H2dbOOo">
+    <prop oor:name="DriverService" oor:op="fuse">
+        <value>io.github.prrvchr.jdbcdriver.sdbcx.Driver</value>
+    </prop>
+    <prop oor:name="ConnectionService" oor:op="fuse">
+        <value>com.sun.star.sdb.Connection</value>
+    </prop>
+</oor:component-data>

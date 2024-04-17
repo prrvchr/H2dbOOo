@@ -32,7 +32,7 @@
     <node oor:name="Installed">
         <node oor:name="sdbc:embedded:hsqldb" oor:op="replace">
             <prop oor:name="Driver">
-                <value>io.github.prrvchr.H2DatabaseOOo.Driver</value>
+                <value>io.github.prrvchr.H2dbOOo.Driver</value>
             </prop>
             <prop oor:name="DriverTypeDisplayName" oor:type="xs:string">
                 <value xml:lang="en-US">Embedded H2 Driver</value>
