@@ -129,7 +129,7 @@ ___
 
 ## A été testé avec:
 
-* LibreOffice 7.3.7.2 - Ubuntu 22.04
+* LibreOffice 24.2.1.2 - Ubuntu 22.04
 
 Je vous encourage en cas de problème :confused:  
 de créer un [dysfonctionnement][13]  
