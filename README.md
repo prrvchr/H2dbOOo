@@ -70,7 +70,7 @@ ___
 It seems important that the file was not renamed when it was downloaded.  
 If necessary, rename it before installing it.
 
-- [![jdbcDriverOOo logo][17]][18] Install **[jdbcDriverOOo.oxt][190]** extension [![Version][20]][19]
+- [![jdbcDriverOOo logo][17]][18] Install **[jdbcDriverOOo.oxt][19]** extension [![Version][20]][19]
 
     This extension is necessary to use H2 Database with all its features.
 
