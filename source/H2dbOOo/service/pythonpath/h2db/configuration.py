@@ -39,12 +39,12 @@ g_errorlog = '%sError'  % g_dbname
 
 # DataBase configuration
 g_protocol = 'xdbc:h2:'
-g_url = 'sdbc:embedded:h2'
+g_url = 'sdbc:embedded:hsqldb'
 g_user = 'SA'
 g_options = ''
 g_create = ''
 g_exist = ';IFEXISTS=TRUE'
 
 # LibreOffice configuration
-g_lover = '24.2'
+g_lover = '5.0'
 
