@@ -29,7 +29,7 @@
 
 **L'utilisation de ce logiciel vous soumet à nos [Conditions d'utilisation][4].**
 
-# version [1.1.0][5]
+# version [1.1.1][5]
 
 ## Introduction:
 
@@ -148,7 +148,13 @@ ___
 - Cette version est basée sur la [correction #154989][32] disponible depuis LibreOffice 24.2.x. Elle peut donc fonctionner avec les autres extensions proposant des services de bases de données intégrées.
 - Désormais, H2dbOOo nécessite LibreOffice 24.2.x minimum et se chargera pour l'url: `sdbc:embedded:h2`.
 
-### Que reste-t-il à faire pour la version 1.1.0:
+### Ce qui a été fait pour la version 1.1.1:
+
+- Mise à jour du paquet [Python packaging][33] vers la version 24.1.
+- Mise à jour du paquet [Python setuptools][34] vers la version 72.1.0.
+- L'extension vous demandera d'installer l'extensions jdbcDriverOOo en version 1.4.2 minimum.
+
+### Que reste-t-il à faire pour la version 1.1.1:
 
 - Ajouter de nouvelles langue pour l'internationalisation...
 
@@ -186,3 +192,5 @@ ___
 [30]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
 [31]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
 [32]: <https://gerrit.libreoffice.org/c/core/+/154989>
+[33]: <https://pypi.org/project/packaging/>
+[34]: <https://pypi.org/project/setuptools/>

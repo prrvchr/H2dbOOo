@@ -29,7 +29,7 @@
 
 **The use of this software subjects you to our [Terms Of Use][4].**
 
-# version [1.1.0][5]
+# version [1.1.1][5]
 
 ## Introduction:
 
@@ -148,7 +148,13 @@ ___
 - This version is based on [fix #154989][32] available since LibreOffice 24.2.x. It can therefore work with other extensions offering integrated database services.
 - Now H2dbOOo requires LibreOffice 24.2.x minimum and will load for the url: `sdbc:embedded:h2`.
 
-### What remains to be done for version 1.1.0:
+### What has been done for version 1.1.1:
+
+- Updated the [Python packaging][33] package to version 24.1.
+- Updated the [Python setuptools][34] package to version 72.1.0.
+- The extension will ask you to install the jdbcDriverOOo extension in versions 1.4.2 minimum.
+
+### What remains to be done for version 1.1.1:
 
 - Add new language for internationalization...
 
@@ -176,7 +182,7 @@ ___
 [20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [21]: <img/H2dbOOo.svg#middle>
 [22]: <https://github.com/prrvchr/H2dbOOo/releases/latest/download/H2dbOOo.oxt>
-[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.1.0#right>
+[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.1.1#right>
 [24]: <img/H2dbOOo-1.png>
 [25]: <img/H2dbOOo-2.png>
 [26]: <img/H2dbOOo-3.png>
@@ -186,3 +192,5 @@ ___
 [30]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
 [31]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
 [32]: <https://gerrit.libreoffice.org/c/core/+/154989>
+[33]: <https://pypi.org/project/packaging/>
+[34]: <https://pypi.org/project/setuptools/>
