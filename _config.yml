@@ -7,6 +7,7 @@ plugins:
 favicon: true
 logo: /img/h2db.svg
 email: prrvchr@gmail.com
+google_analytics: G-K55HT9B6Q6
 title: H2dbOOo
 blank_title: true
 description: The latest version of H2 database in a single odb file.
