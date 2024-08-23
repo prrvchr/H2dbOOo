@@ -44,6 +44,8 @@ g_user = 'SA'
 g_options = ''
 g_create = ''
 g_exist = ';IFEXISTS=TRUE'
+g_path = True;
+g_driver = ''
 
 # LibreOffice configuration
 g_lover = '24.2'

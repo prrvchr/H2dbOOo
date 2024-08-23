@@ -29,7 +29,7 @@
 
 **L'utilisation de ce logiciel vous soumet à nos [Conditions d'utilisation][4].**
 
-# version [1.1.1][5]
+# version [1.1.2][5]
 
 ## Introduction:
 
@@ -129,7 +129,9 @@ ___
 
 ## A été testé avec:
 
-* LibreOffice 24.2.1.2 - Ubuntu 22.04
+* LibreOffice 24.2.1.2 (x86_64)- Windows 10
+
+* LibreOffice 24.2.1.2 - Lubuntu 22.04
 
 Je vous encourage en cas de problème :confused:  
 de créer un [dysfonctionnement][13]  
@@ -154,7 +156,11 @@ ___
 - Mise à jour du paquet [Python setuptools][34] vers la version 72.1.0.
 - L'extension vous demandera d'installer l'extensions jdbcDriverOOo en version 1.4.2 minimum.
 
-### Que reste-t-il à faire pour la version 1.1.1:
+### Ce qui a été fait pour la version 1.1.2:
+
+- Correction du [problème n°2][35] qui semble être une régression liée à la sortie de JaybirdOOo. Merci à TeddyBoomer de l'avoir signalé.
+
+### Que reste-t-il à faire pour la version 1.1.2:
 
 - Ajouter de nouvelles langue pour l'internationalisation...
 
@@ -182,7 +188,7 @@ ___
 [20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [21]: <img/H2dbOOo.svg#middle>
 [22]: <https://github.com/prrvchr/H2dbOOo/releases/latest/download/H2dbOOo.oxt>
-[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.1.0#right>
+[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.1.2#right>
 [24]: <img/H2dbOOo-1_fr.png>
 [25]: <img/H2dbOOo-2_fr.png>
 [26]: <img/H2dbOOo-3_fr.png>
@@ -194,3 +200,4 @@ ___
 [32]: <https://gerrit.libreoffice.org/c/core/+/154989>
 [33]: <https://pypi.org/project/packaging/>
 [34]: <https://pypi.org/project/setuptools/>
+[35]: <https://github.com/prrvchr/HyperSQLOOo/issues/2>
