@@ -159,6 +159,8 @@ ___
 ### What has been done for version 1.1.2:
 
 - Fixed [issue #2][35] which appears to be a regression related to the release of JaybirdOOo. Thanks to TeddyBoomer for reporting it.
+- Updated the [Python setuptools][34] package to version 73.0.1.
+- Logging accessible in extension options now displays correctly on Windows.
 
 ### What remains to be done for version 1.1.2:
 
