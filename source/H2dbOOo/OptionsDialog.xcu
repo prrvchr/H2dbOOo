@@ -8,8 +8,8 @@
     <node oor:name="Nodes">
         <node oor:name="io.github.prrvchr.H2dbOOo" oor:op="fuse">
             <prop oor:name="Label">
-                <value xml:lang="en-US">Base drivers</value>
-                <value xml:lang="fr-FR">Pilotes Base</value>
+                <value xml:lang="en-US">LibreOffice Base</value>
+                <value xml:lang="fr-FR">LibreOffice Base</value>
             </prop>
             <prop oor:name="AllModules">
                 <value>true</value>
@@ -20,11 +20,11 @@
                         <value>io.github.prrvchr.H2dbOOo</value>
                     </prop>
                     <prop oor:name="Label">
-                        <value xml:lang="en-US">Embedded H2 Database Driver</value>
-                        <value xml:lang="fr-FR">Pilote H2 Database intégré</value>
+                        <value xml:lang="en-US">Embedded H2 Driver</value>
+                        <value xml:lang="fr-FR">Pilote H2 intégré</value>
                     </prop>
                     <prop oor:name="OptionsPage">
-                        <value>%origin%/H2dbOOo/OptionsDialog.xdl</value>
+                        <value>%origin%/dialogs/OptionsDialog.xdl</value>
                     </prop>
                     <prop oor:name="EventHandlerService">
                         <value>io.github.prrvchr.H2dbOOo.OptionsHandler</value>

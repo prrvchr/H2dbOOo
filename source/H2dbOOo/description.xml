@@ -53,8 +53,8 @@
         <name lang="fr-FR">H2dbOOo</name>
     </display-name>
     <icon>
-        <default xlink:href="H2dbOOo/H2dbOOo.svg"/>
-        <high-contrast xlink:href="H2dbOOo/H2dbOOo.svg"/>
+        <default xlink:href="img/H2dbOOo.svg"/>
+        <high-contrast xlink:href="img/H2dbOOo.svg"/>
     </icon>
     <extension-description>
         <src xlink:href="description/desc_en.txt" lang="en-US"/>

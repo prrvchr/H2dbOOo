@@ -133,6 +133,8 @@ ___
 
 * LibreOffice 24.2.1.2 - Lubuntu 22.04
 
+* LibreOffice 24.8.0.3 (X86_64) - Windows 10(x64) - Python version 3.9.19 (sous Lubuntu 22.04 / VirtualBox 6.1.38)
+
 Je vous encourage en cas de problème :confused:  
 de créer un [dysfonctionnement][13]  
 J'essaierai de le résoudre :smile:
@@ -161,6 +163,9 @@ ___
 - Correction du [problème n°2][35] qui semble être une régression liée à la sortie de JaybirdOOo. Merci à TeddyBoomer de l'avoir signalé.
 - Mise à jour du paquet [Python setuptools][34] vers la version 73.0.1.
 - La journalisation accessible dans les options de l’extension s’affiche désormais correctement sous Windows.
+- Les options de l'extension sont désormais accessibles via: **Outils -> Options... -> LibreOffice Base -> Pilote H2 intégré**
+- Les modifications apportées aux options d'extension, qui nécessitent un redémarrage de LibreOffice, entraîneront l'affichage d'un message.
+- Support de LibreOffice version 24.8.x.
 
 ### Que reste-t-il à faire pour la version 1.1.2:
 
