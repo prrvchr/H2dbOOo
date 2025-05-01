@@ -50,16 +50,12 @@ ___
 
 ## Prérequis:
 
+A cause du [dysfonctionnement #156471][14] et suivant le [PR#154989][15], l'extension H2dbOOo nécessite **LibreOffice version 24.2.x** minimum pour fonctionner.
+
 L'extension H2dbOOo utilise l'extension jdbcDriverOOo pour fonctionner.  
-Elle doit donc répondre aux [prérequis de l'extension jdbcDriverOOo][14].
+Elle doit donc répondre aux [prérequis de l'extension jdbcDriverOOo][16].
 
-**Depuis la version 1.1.0, seul LibreOffice 24.2.x ou supérieur est pris en charge.**  
-S'il ne vous est pas possible d'utiliser une telle version, utilisez la version précédente de H2dbOOo. Mais dans ce cas, cette extension ne peut pas être installée avec l'extension [HyperSQLOOo][15], voir [bug #156471][16].  
-De plus, il vous sera difficile de migrer les fichiers odb créés sous des versions inférieures de H2dbOOo. Je vous recommande d'utiliser LibreOffice 24.2.x minimum avec H2dbOOo 1.1.0 ou supérieur.
-
-**Sous Linux et macOS les paquets Python** utilisés par l'extension, peuvent s'il sont déja installé provenir du système et donc, **peuvent ne pas être à jour**.  
-Afin de s'assurer que vos paquets Python sont à jour il est recommandé d'utiliser l'option **Info système** dans les Options de l'extension accessible par:  
-**Outils -> Options -> Pilotes Base -> Pilote SQLite intégré -> Voir journal -> Info système**  
+Si vous utilisez **LibreOffice sous Linux** et que **LibreOffice a été installé avec le gestionnaire de paquets**, vos paquets Python peuvent être fournis par le système et obsolètes. La journalisation de l'extension vous permettera de verifier si c'est le cas. Elle est accessible via le menu: **Outils -> Options -> LibreOffice Base -> Pilote H2 intégré -> Voir journal -> Info système** et nécessite le redemarrage de LibreOffice aprés son activation.  
 Si des paquets obsolètes apparaissent, vous pouvez les mettre à jour avec la commande:  
 `pip install --upgrade <package-name>`
 
@@ -80,6 +76,13 @@ Redémarrez LibreOffice après l'installation.
 **Attention, redémarrer LibreOffice peut ne pas suffire.**
 - **Sous Windows** pour vous assurer que LibreOffice redémarre correctement, utilisez le Gestionnaire de tâche de Windows pour vérifier qu'aucun service LibreOffice n'est visible après l'arrêt de LibreOffice (et tuez-le si ç'est le cas).
 - **Sous Linux ou macOS** vous pouvez également vous assurer que LibreOffice redémarre correctement, en le lançant depuis un terminal avec la commande `soffice` et en utilisant la combinaison de touches `Ctrl + C` si après l'arrêt de LibreOffice, le terminal n'est pas actif (pas d'invité de commande).
+
+Après avoir redémarré LibreOffice, vous pouvez vous assurer que l'extension et son pilote sont correctement installés en vérifiant que le pilote `io.github.prrvchr.H2dbOOo.Driver` est répertorié dans le **Pool de Connexions**, accessible via le menu: **Outils -> Options -> LibreOffice Base -> Connexions**. Il n'est pas nécessaire d'activer le pool de connexions.
+
+Si le pilote n'est pas répertorié, la raison de l'échec du chargement du pilote peut être trouvée dans la journalisation de l'extension. Cette journalisation est accessible via le menu: **Outils -> Options -> LibreOffice Base -> Pilote H2 intégré -> Options de journalisation**.  
+La journalisation `H2dbLogger` doit d'abord être activée, puis LibreOffice redémarré pour obtenir le message d'erreur dans le journal.
+
+N'oubliez pas au préalable de mettre à jour la version du JRE ou JDK Java installée sur votre ordinateur, cette extension utilise la nouvelle version de jdbcDriverOOo qui nécessite **Java version 17 ou ultérieure** au lieu de Java 11 auparavant.
 
 ___
 
@@ -127,6 +130,21 @@ En contre partie, la fonction: **fichier -> Sauvegarder** n'a **aucun effet sur 
 
 ___
 
+## Comment créer l'extension:
+
+Normalement, l'extension est créée avec Eclipse pour Java et [LOEclipse][32]. Pour contourner Eclipse, j'ai modifié LOEclipse afin de permettre la création de l'extension avec Apache Ant.  
+Pour créer l'extension HyperSQLOOo avec l'aide d'Apache Ant, vous devez:
+- Installer le [SDK Java][33] version 8 ou supérieure.
+- Installer [Apache Ant][34] version 1.9.1 ou supérieure.
+- Installer [LibreOffice et son SDK][35] version 7.x ou supérieure.
+- Cloner le dépôt [HyperSQLOOo][36] sur GitHub dans un dossier.
+- Depuis ce dossier, accédez au répertoire: `source/H2dbOOo/`
+- Dans ce répertoire, modifiez le fichier `build.properties` afin que les propriétés `office.install.dir` et `sdk.dir` pointent vers les dossiers d'installation de LibreOffice et de son SDK, respectivement.
+- Lancez la création de l'archive avec la commande: `ant`
+- Vous trouverez l'archive générée dans le sous-dossier: `dist/`
+
+___
+
 ## A été testé avec:
 
 * LibreOffice 24.2.1.2 (x86_64)- Windows 10
@@ -149,19 +167,19 @@ ___
 
 ### Ce qui a été fait pour la version 1.1.0:
 
-- Cette version est basée sur la [correction #154989][32] disponible depuis LibreOffice 24.2.x. Elle peut donc fonctionner avec les autres extensions proposant des services de bases de données intégrées.
+- Cette version est basée sur la [correction #154989][15] disponible depuis LibreOffice 24.2.x. Elle peut donc fonctionner avec les autres extensions proposant des services de bases de données intégrées.
 - Désormais, H2dbOOo nécessite LibreOffice 24.2.x minimum et se chargera pour l'url: `sdbc:embedded:h2`.
 
 ### Ce qui a été fait pour la version 1.1.1:
 
-- Mise à jour du paquet [Python packaging][33] vers la version 24.1.
-- Mise à jour du paquet [Python setuptools][34] vers la version 72.1.0.
+- Mise à jour du paquet [Python packaging][37] vers la version 24.1.
+- Mise à jour du paquet [Python setuptools][38] vers la version 72.1.0.
 - L'extension vous demandera d'installer l'extensions jdbcDriverOOo en version 1.4.2 minimum.
 
 ### Ce qui a été fait pour la version 1.1.2:
 
-- Correction du [problème n°2][35] qui semble être une régression liée à la sortie de JaybirdOOo. Merci à TeddyBoomer de l'avoir signalé.
-- Mise à jour du paquet [Python setuptools][34] vers la version 73.0.1.
+- Correction du [problème n°2][39] qui semble être une régression liée à la sortie de JaybirdOOo. Merci à TeddyBoomer de l'avoir signalé.
+- Mise à jour du paquet [Python setuptools][38] vers la version 73.0.1.
 - La journalisation accessible dans les options de l’extension s’affiche désormais correctement sous Windows.
 - Les options de l'extension sont désormais accessibles via: **Outils -> Options... -> LibreOffice Base -> Pilote H2 intégré**
 - Les modifications apportées aux options d'extension, qui nécessitent un redémarrage de LibreOffice, entraîneront l'affichage d'un message.
@@ -177,7 +195,14 @@ ___
 - L'extension vous demandera d'installer l'extensions jdbcDriverOOo en version 1.4.6 minimum.
 - Modification des options de l'extension accessibles via : **Outils -> Options... -> LibreOffice Base -> Pilote H2 intégré** afin de respecter la nouvelle charte graphique.
 
-### Que reste-t-il à faire pour la version 1.1.4:
+### Ce qui a été fait pour la version 1.2.0:
+
+- Déploiement de l'enregistrement passif permettant une installation beaucoup plus rapide des extensions et de différencier les services UNO enregistrés de ceux fournis par une implémentation Java ou Python. Cet enregistrement passif est assuré par l'extension [LOEclipse][32] via les [PR#152][40] et [PR#157][41].
+- Il est désormais possible de créer le fichier oxt de l'extension HyperSQLOOo uniquement avec Apache Ant et une copie du dépôt GitHub. La section [Comment créer l'extension][42] a été ajoutée à la documentation.
+- Toute erreur survenant lors du chargement du pilote sera consignée dans le journal de l'extension si la journalisation a été préalablement activé. Cela facilite l'identification des problèmes d'installation sous Windows.
+- Nécessite l'extension **jdbcDriverOOo en version 1.5.0 minimum**.
+
+### Que reste-t-il à faire pour la version 1.2.0:
 
 - Ajouter de nouvelles langue pour l'internationalisation...
 
@@ -187,7 +212,7 @@ ___
 [2]: <https://prrvchr.github.io/H2dbOOo/>
 [3]: <https://prrvchr.github.io/H2dbOOo/>
 [4]: <https://prrvchr.github.io/H2dbOOo/source/H2dbOOo/registration/TermsOfUse_fr>
-[5]: <https://prrvchr.github.io/H2dbOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-114>
+[5]: <https://prrvchr.github.io/H2dbOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-120>
 [6]: <https://prrvchr.github.io/README_fr>
 [7]: <https://fr.libreoffice.org/download/telecharger-libreoffice/>
 [8]: <https://www.openoffice.org/fr/Telecharger/>
@@ -196,9 +221,9 @@ ___
 [11]: <https://www.h2database.com/html/features.html#logging_recovery>
 [12]: <https://github.com/prrvchr/H2dbOOo/>
 [13]: <https://github.com/prrvchr/H2dbOOo/issues/new>
-[14]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr#pr%C3%A9requis>
-[15]: <https://prrvchr.github.io/HyperSQLOOo/README_fr#pr%C3%A9requis>
-[16]: <https://bugs.documentfoundation.org/show_bug.cgi?id=156471>
+[14]: <https://bugs.documentfoundation.org/show_bug.cgi?id=156471>
+[15]: <https://gerrit.libreoffice.org/c/core/+/154989>
+[16]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr#pr%C3%A9requis>
 [17]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
 [18]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr>
 [19]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
@@ -214,7 +239,14 @@ ___
 [29]: <https://github.com/prrvchr/H2dbOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
 [30]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
 [31]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
-[32]: <https://gerrit.libreoffice.org/c/core/+/154989>
-[33]: <https://pypi.org/project/packaging/>
-[34]: <https://pypi.org/project/setuptools/>
-[35]: <https://github.com/prrvchr/HyperSQLOOo/issues/2>
+[32]: <https://github.com/LibreOffice/loeclipse>
+[33]: <https://adoptium.net/temurin/releases/?version=8&package=jdk>
+[34]: <https://ant.apache.org/manual/install.html>
+[35]: <https://downloadarchive.documentfoundation.org/libreoffice/old/7.6.7.2/>
+[36]: <https://github.com/prrvchr/H2dbOOo.git>
+[37]: <https://pypi.org/project/packaging/>
+[38]: <https://pypi.org/project/setuptools/>
+[39]: <https://github.com/prrvchr/HyperSQLOOo/issues/2>
+[40]: <https://github.com/LibreOffice/loeclipse/pull/152>
+[41]: <https://github.com/LibreOffice/loeclipse/pull/157>
+[42]: <https://prrvchr.github.io/H2dbOOo/README_fr#comment-cr%C3%A9er-lextension>
