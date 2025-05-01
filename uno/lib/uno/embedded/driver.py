@@ -73,18 +73,21 @@ class Driver(unohelper.Base,
              XServiceInfo,
              XDriver):
 
-    def __init__(self, ctx, lock, logger, service, implementation):
+    def __init__(self, ctx, lock, logger, service, implementation, services):
         self._ctx = ctx
         self._lock = lock
-        self._implementation = implementation
-        self._logger = logger
         self._driver = createService(ctx, service)
+        self._implementation = implementation
+        self._services = services
+        self._logger = logger
+        self._listeners = []
         # FIXME: If we want to add the StorageChangeListener only once,
         # FIXME: we need to be able to retrieve the DocumentHandler (keep a reference)
         self._handlers = []
 
     # XDriver
     def connect(self, url, infos):
+        print("Driver.connect 1 url: %s" % url)
         # XXX: We need to test first if configuration is OK...
         newinfos, document, storage, location = self._getConnectionInfo(infos)
         if storage is None or location is None:
