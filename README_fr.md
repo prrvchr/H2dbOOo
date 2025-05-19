@@ -50,14 +50,10 @@ ___
 
 ## Prérequis:
 
-A cause du [dysfonctionnement #156471][14] et suivant le [PR#154989][15], l'extension H2dbOOo nécessite **LibreOffice version 24.2.x** minimum pour fonctionner.
-
 L'extension H2dbOOo utilise l'extension jdbcDriverOOo pour fonctionner.  
-Elle doit donc répondre aux [prérequis de l'extension jdbcDriverOOo][16].
+Elle doit donc répondre aux [prérequis de l'extension jdbcDriverOOo][14].
 
-Si vous utilisez **LibreOffice sous Linux** et que **LibreOffice a été installé avec le gestionnaire de paquets**, vos paquets Python peuvent être fournis par le système et obsolètes. La journalisation de l'extension vous permettera de verifier si c'est le cas. Elle est accessible via le menu: **Outils -> Options -> LibreOffice Base -> Pilote H2 intégré -> Voir journal -> Info système** et nécessite le redemarrage de LibreOffice aprés son activation.  
-Si des paquets obsolètes apparaissent, vous pouvez les mettre à jour avec la commande:  
-`pip install --upgrade <package-name>`
+De plus, en raison du [dysfonctionnement #156471][15] et suivant le [PR#154989][16], l'extension H2dbOOo nécessite **LibreOffice version 24.2.x** minimum pour fonctionner.
 
 ___
 
@@ -133,11 +129,11 @@ ___
 ## Comment créer l'extension:
 
 Normalement, l'extension est créée avec Eclipse pour Java et [LOEclipse][32]. Pour contourner Eclipse, j'ai modifié LOEclipse afin de permettre la création de l'extension avec Apache Ant.  
-Pour créer l'extension HyperSQLOOo avec l'aide d'Apache Ant, vous devez:
+Pour créer l'extension H2dbOOo avec l'aide d'Apache Ant, vous devez:
 - Installer le [SDK Java][33] version 8 ou supérieure.
 - Installer [Apache Ant][34] version 1.9.1 ou supérieure.
 - Installer [LibreOffice et son SDK][35] version 7.x ou supérieure.
-- Cloner le dépôt [HyperSQLOOo][36] sur GitHub dans un dossier.
+- Cloner le dépôt [H2dbOOo][36] sur GitHub dans un dossier.
 - Depuis ce dossier, accédez au répertoire: `source/H2dbOOo/`
 - Dans ce répertoire, modifiez le fichier `build.properties` afin que les propriétés `office.install.dir` et `sdk.dir` pointent vers les dossiers d'installation de LibreOffice et de son SDK, respectivement.
 - Lancez la création de l'archive avec la commande: `ant`
@@ -167,7 +163,7 @@ ___
 
 ### Ce qui a été fait pour la version 1.1.0:
 
-- Cette version est basée sur la [correction #154989][15] disponible depuis LibreOffice 24.2.x. Elle peut donc fonctionner avec les autres extensions proposant des services de bases de données intégrées.
+- Cette version est basée sur la [correction #154989][16] disponible depuis LibreOffice 24.2.x. Elle peut donc fonctionner avec les autres extensions proposant des services de bases de données intégrées.
 - Désormais, H2dbOOo nécessite LibreOffice 24.2.x minimum et se chargera pour l'url: `sdbc:embedded:h2`.
 
 ### Ce qui a été fait pour la version 1.1.1:
@@ -198,7 +194,8 @@ ___
 ### Ce qui a été fait pour la version 1.2.0:
 
 - Déploiement de l'enregistrement passif permettant une installation beaucoup plus rapide des extensions et de différencier les services UNO enregistrés de ceux fournis par une implémentation Java ou Python. Cet enregistrement passif est assuré par l'extension [LOEclipse][32] via les [PR#152][40] et [PR#157][41].
-- Il est désormais possible de créer le fichier oxt de l'extension HyperSQLOOo uniquement avec Apache Ant et une copie du dépôt GitHub. La section [Comment créer l'extension][42] a été ajoutée à la documentation.
+- Modification de [LOEclipse][32] pour prendre en charge le nouveau format de fichier `rdb` produit par l'utilitaire de compilation `unoidl-write`. Les fichiers `idl` ont été mis à jour pour prendre en charge les deux outils de compilation disponibles: idlc et unoidl-write.
+- Il est désormais possible de créer le fichier oxt de l'extension H2dbOOo uniquement avec Apache Ant et une copie du dépôt GitHub. La section [Comment créer l'extension][42] a été ajoutée à la documentation.
 - Toute erreur survenant lors du chargement du pilote sera consignée dans le journal de l'extension si la journalisation a été préalablement activé. Cela facilite l'identification des problèmes d'installation sous Windows.
 - Nécessite l'extension **jdbcDriverOOo en version 1.5.0 minimum**.
 
@@ -221,9 +218,9 @@ ___
 [11]: <https://www.h2database.com/html/features.html#logging_recovery>
 [12]: <https://github.com/prrvchr/H2dbOOo/>
 [13]: <https://github.com/prrvchr/H2dbOOo/issues/new>
-[14]: <https://bugs.documentfoundation.org/show_bug.cgi?id=156471>
-[15]: <https://gerrit.libreoffice.org/c/core/+/154989>
-[16]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr#pr%C3%A9requis>
+[14]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr#pr%C3%A9requis>
+[15]: <https://bugs.documentfoundation.org/show_bug.cgi?id=156471>
+[16]: <https://gerrit.libreoffice.org/c/core/+/154989>
 [17]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
 [18]: <https://prrvchr.github.io/jdbcDriverOOo/README_fr>
 [19]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
