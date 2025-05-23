@@ -29,7 +29,7 @@
 
 **L'utilisation de ce logiciel vous soumet à nos [Conditions d'utilisation][4].**
 
-# version [1.1.4][5]
+# version [1.2.0][5]
 
 ## Introduction:
 
@@ -131,7 +131,7 @@ ___
 Normalement, l'extension est créée avec Eclipse pour Java et [LOEclipse][32]. Pour contourner Eclipse, j'ai modifié LOEclipse afin de permettre la création de l'extension avec Apache Ant.  
 Pour créer l'extension H2dbOOo avec l'aide d'Apache Ant, vous devez:
 - Installer le [SDK Java][33] version 8 ou supérieure.
-- Installer [Apache Ant][34] version 1.9.1 ou supérieure.
+- Installer [Apache Ant][34] version 1.10.0 ou supérieure.
 - Installer [LibreOffice et son SDK][35] version 7.x ou supérieure.
 - Cloner le dépôt [H2dbOOo][36] sur GitHub dans un dossier.
 - Depuis ce dossier, accédez au répertoire: `source/H2dbOOo/`
@@ -227,7 +227,7 @@ ___
 [20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [21]: <img/H2dbOOo.svg#middle>
 [22]: <https://github.com/prrvchr/H2dbOOo/releases/latest/download/H2dbOOo.oxt>
-[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.1.4#right>
+[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.2.0#right>
 [24]: <img/H2dbOOo-1_fr.png>
 [25]: <img/H2dbOOo-2_fr.png>
 [26]: <img/H2dbOOo-3_fr.png>
