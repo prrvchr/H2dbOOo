@@ -1,14 +1,22 @@
 namespace: H2dbOOo
+
 output:
   file_path: ./Fluid-Attacks-Results.csv
   format: CSV
+
 working_dir: .
+
 sast:
   include:
     - glob(source/H2dbOOo/service/*.py)
     - glob(source/H2dbOOo/service/pythonpath/h2db/*)
+
 sca:
+  exclude:
+    - dependency_name: setuptools
+      reason: False Positive
   include:
     - .
+
 language: EN
 strict: true
