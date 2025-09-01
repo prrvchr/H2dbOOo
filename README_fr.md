@@ -29,7 +29,7 @@
 
 **L'utilisation de ce logiciel vous soumet à nos [Conditions d'utilisation][4].**
 
-# version [1.2.2][5]
+# version [1.2.3][5]
 
 ## Introduction:
 
@@ -208,7 +208,11 @@ ___
 
 - Nécessite l'extension **jdbcDriverOOo en version 1.5.4 minimum**.
 
-### Que reste-t-il à faire pour la version 1.2.2:
+### Ce qui a été fait pour la version 1.2.3:
+
+- Nécessite l'extension **jdbcDriverOOo en version 1.5.7 minimum**.
+
+### Que reste-t-il à faire pour la version 1.2.3:
 
 - Ajouter de nouvelles langue pour l'internationalisation...
 
@@ -218,7 +222,7 @@ ___
 [2]: <https://prrvchr.github.io/H2dbOOo/>
 [3]: <https://prrvchr.github.io/H2dbOOo/>
 [4]: <https://prrvchr.github.io/H2dbOOo/source/H2dbOOo/registration/TermsOfUse_fr>
-[5]: <https://prrvchr.github.io/H2dbOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-122>
+[5]: <https://prrvchr.github.io/H2dbOOo/README_fr#ce-qui-a-%C3%A9t%C3%A9-fait-pour-la-version-123>
 [6]: <https://prrvchr.github.io/README_fr>
 [7]: <https://fr.libreoffice.org/download/telecharger-libreoffice/>
 [8]: <https://www.openoffice.org/fr/Telecharger/>
@@ -236,7 +240,7 @@ ___
 [20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
 [21]: <img/H2dbOOo.svg#middle>
 [22]: <https://github.com/prrvchr/H2dbOOo/releases/latest/download/H2dbOOo.oxt>
-[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.2.2#right>
+[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.2.3#right>
 [24]: <img/H2dbOOo-1_fr.png>
 [25]: <img/H2dbOOo-2_fr.png>
 [26]: <img/H2dbOOo-3_fr.png>
