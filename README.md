@@ -29,7 +29,7 @@
 
 **The use of this software subjects you to our [Terms Of Use][4].**
 
-# version [1.2.3][5]
+# version [1.3.0][5]
 
 ## Introduction:
 
@@ -42,6 +42,7 @@ Being free software I encourage you:
 - To duplicate its [source code][12].
 - To make changes, corrections, improvements.
 - To open [issue][13] if needed.
+- To [participate in the costs][14] of [CASA certification][15].
 
 In short, to participate in the development of this extension.  
 Because it is together that we can make Free Software smarter.
@@ -51,9 +52,9 @@ ___
 ## Requirement:
 
 The H2dbOOo extension uses the jdbcDriverOOo extension to work.  
-It must therefore meet the [requirement of the jdbcDriverOOo extension][14].
+It must therefore meet the [requirement of the jdbcDriverOOo extension][16].
 
-Additionally, due to [issue #156471][15] and following [PR#154989][16], the H2dbOOo extension requires **LibreOffice version 24.2.x** minimum to work.
+Additionally, due to [issue #156471][17] and following [PR#154989][18], the H2dbOOo extension requires **LibreOffice version 24.2.x** minimum to work.
 
 ___
 
@@ -62,11 +63,11 @@ ___
 It seems important that the file was not renamed when it was downloaded.  
 If necessary, rename it before installing it.
 
-- [![jdbcDriverOOo logo][17]][18] Install **[jdbcDriverOOo.oxt][19]** extension [![Version][20]][19]
+- [![jdbcDriverOOo logo][20]][21] Install **[jdbcDriverOOo.oxt][22]** extension [![Version][23]][22]
 
     This extension is necessary to use H2 Database with all its features.
 
-- ![H2dbOOo logo][21] Install **[H2dbOOo.oxt][22]** extension [![Version][23]][22]
+- ![H2dbOOo logo][24] Install **[H2dbOOo.oxt][25]** extension [![Version][26]][25]
 
 Restart LibreOffice after installation.  
 **Be careful, restarting LibreOffice may not be enough.**
@@ -88,20 +89,20 @@ ___
 
 In LibreOffice / OpenOffice go to File -> New -> Database...:
 
-![H2dbOOo screenshot 1][24]
+![H2dbOOo screenshot 1][27]
 
 In step: Select database:
 - select: Create a new database
 - in: Emdedded database: choose: **Embedded H2 Driver**
 - click on button: Next
 
-![H2dbOOo screenshot 2][25]
+![H2dbOOo screenshot 2][28]
 
 In step: Save and proceed:
 - adjust the parameters according to your needs...
 - click on button: Finish
 
-![H2dbOOo screenshot 3][26]
+![H2dbOOo screenshot 3][29]
 
 Have fun...
 
@@ -109,17 +110,17 @@ ___
 
 ## How does it work:
 
-H2dbOOo is an [com.sun.star.sdbc.Driver][27] UNO service written in Python.  
-It is an overlay to the [jdbcDriverOOo][18] extension allowing to store the H2 database in an odb file (which is, in fact, a compressed file).
+H2dbOOo is an [com.sun.star.sdbc.Driver][30] UNO service written in Python.  
+It is an overlay to the [jdbcDriverOOo][21] extension allowing to store the H2 database in an odb file (which is, in fact, a compressed file).
 
 Its operation is quite basic, namely:
 
 - When requesting a connection, several things are done:
   - If it does not already exist, a **subdirectory** with name: `.` + `odb_file_name` + `.lck` is created in the location of the odb file where all H2 files are extracted from the **database** directory of the odb file (unzip).
-  - The [jdbcDriverOOo][18] extension is used to get the [com.sun.star.sdbc.XConnection][28] interface from the **subdirectory** path + `/H2`.
-  - If the connection is successful, a [DocumentHandler][29] is added as an [com.sun.star.util.XCloseListener][30] and [com.sun.star.document.XStorageChangeListener][31] to the odb file.
+  - The [jdbcDriverOOo][21] extension is used to get the [com.sun.star.sdbc.XConnection][31] interface from the **subdirectory** path + `/H2`.
+  - If the connection is successful, a [DocumentHandler][32] is added as an [com.sun.star.util.XCloseListener][33] and [com.sun.star.document.XStorageChangeListener][34] to the odb file.
   - If the connection is unsuccessful and the files was extracted in phase 1, the **subdirectory** will be deleted.
-- When closing or renaming (Save As) the odb file, if the connection was successful, the [DocumentHandler][29] copies all files present in the **subdirectory** into the (new) **database** directory of the odb file (zip), then delete the **subdirectory**.
+- When closing or renaming (Save As) the odb file, if the connection was successful, the [DocumentHandler][32] copies all files present in the **subdirectory** into the (new) **database** directory of the odb file (zip), then delete the **subdirectory**.
 
 The main purpose of this mode of operation is to take advantage of the ACID characteristics of the underlying database in the event of an abnormal closure of LibreOffice.
 On the other hand, the function: **file -> Save** has **no effect on the underlying database**. Only closing the odb file or saving it under a different name (File -> Save As) will save the database in the odb file.
@@ -128,12 +129,12 @@ ___
 
 ## How to build the extension:
 
-Normally, the extension is created with Eclipse for Java and [LOEclipse][32]. To work around Eclipse, I modified LOEclipse to allow the extension to be created with Apache Ant.  
+Normally, the extension is created with Eclipse for Java and [LOEclipse][35]. To work around Eclipse, I modified LOEclipse to allow the extension to be created with Apache Ant.  
 To create the H2dbOOo extension with the help of Apache Ant, you need to:
-- Install the [Java SDK][33] version 8 or higher.
-- Install [Apache Ant][34] version 1.10.0 or higher.
-- Install [LibreOffice and its SDK][35] version 7.x or higher.
-- Clone the [H2dbOOo][36] repository on GitHub into a folder.
+- Install the [Java SDK][36] version 8 or higher.
+- Install [Apache Ant][37] version 1.10.0 or higher.
+- Install [LibreOffice and its SDK][38] version 7.x or higher.
+- Clone the [H2dbOOo][39] repository on GitHub into a folder.
 - From this folder, move to the directory: `source/H2dbOOo/`
 - In this directory, edit the file: `build.properties` so that the `office.install.dir` and `sdk.dir` properties point to the folders where LibreOffice and its SDK were installed, respectively.
 - Start the archive creation process using the command: `ant`
@@ -163,19 +164,19 @@ ___
 
 ### What has been done for version 1.1.0:
 
-- This version is based on [fix #154989][16] available since LibreOffice 24.2.x. It can therefore work with other extensions offering integrated database services.
+- This version is based on [fix #154989][18] available since LibreOffice 24.2.x. It can therefore work with other extensions offering integrated database services.
 - Now H2dbOOo requires LibreOffice 24.2.x minimum and will load for the url: `sdbc:embedded:h2`.
 
 ### What has been done for version 1.1.1:
 
-- Updated the [Python packaging][37] package to version 24.1.
-- Updated the [Python setuptools][38] package to version 72.1.0.
+- Updated the [Python packaging][40] package to version 24.1.
+- Updated the [Python setuptools][41] package to version 72.1.0.
 - The extension will ask you to install the jdbcDriverOOo extension in versions 1.4.2 minimum.
 
 ### What has been done for version 1.1.2:
 
-- Fixed [issue #2][39] which appears to be a regression related to the release of JaybirdOOo. Thanks to TeddyBoomer for reporting it.
-- Updated the [Python setuptools][38] package to version 73.0.1.
+- Fixed [issue #2][42] which appears to be a regression related to the release of JaybirdOOo. Thanks to TeddyBoomer for reporting it.
+- Updated the [Python setuptools][41] package to version 73.0.1.
 - Logging accessible in extension options now displays correctly on Windows.
 - The extension options are now accessible via: **Tools -> Options... -> LibreOffice Base -> Embedded H2 Driver**
 - Changes to extension options that require a restart of LibreOffice will result in a message being displayed.
@@ -193,9 +194,9 @@ ___
 
 ### What has been done for version 1.2.0:
 
-- Passive registration deployment that allows for much faster installation of extensions and differentiation of registered UNO services from those provided by a Java or Python implementation. This passive registration is provided by the [LOEclipse][32] extension via [PR#152][40] and [PR#157][41].
-- Modified [LOEclipse][32] to support the new `rdb` file format produced by the `unoidl-write` compilation utility. `idl` files have been updated to support both available compilation tools: idlc and unoidl-write.
-- It is now possible to build the oxt file of the H2dbOOo extension only with the help of Apache Ant and a copy of the GitHub repository. The [How to build the extension][42] section has been added to the documentation.
+- Passive registration deployment that allows for much faster installation of extensions and differentiation of registered UNO services from those provided by a Java or Python implementation. This passive registration is provided by the [LOEclipse][35] extension via [PR#152][43] and [PR#157][44].
+- Modified [LOEclipse][35] to support the new `rdb` file format produced by the `unoidl-write` compilation utility. `idl` files have been updated to support both available compilation tools: idlc and unoidl-write.
+- It is now possible to build the oxt file of the H2dbOOo extension only with the help of Apache Ant and a copy of the GitHub repository. The [How to build the extension][45] section has been added to the documentation.
 - Any errors occurring while loading the driver will be logged in the extension's log if logging has been previously enabled. This makes it easier to identify installation problems on Windows.
 - Requires the **jdbcDriverOOo extension at least version 1.5.0**.
 
@@ -212,7 +213,13 @@ ___
 
 - Requires the **jdbcDriverOOo extension at least version 1.5.7**.
 
-### What remains to be done for version 1.2.3:
+### What has been done for version 1.3.0:
+
+- If the jdbcDriverOOo extension works without Java instrumentation, a warning message will be displayed in the extension options.
+- Requires the **jdbcDriverOOo extension at least version 1.6.0**.
+- Has been tested under LibreOfficeDev 26.2.
+
+### What remains to be done for version 1.3.0:
 
 - Add new language for internationalization...
 
@@ -222,7 +229,7 @@ ___
 [2]: <https://prrvchr.github.io/H2dbOOo/>
 [3]: <https://prrvchr.github.io/H2dbOOo/README_fr>
 [4]: <https://prrvchr.github.io/H2dbOOo/source/H2dbOOo/registration/TermsOfUse_en>
-[5]: <https://prrvchr.github.io/H2dbOOo#what-has-been-done-for-version-123>
+[5]: <https://prrvchr.github.io/H2dbOOo#what-has-been-done-for-version-130>
 [6]: <https://prrvchr.github.io/>
 [7]: <https://www.libreoffice.org/download/download/>
 [8]: <https://www.openoffice.org/download/index.html>
@@ -231,32 +238,34 @@ ___
 [11]: <https://www.h2database.com/html/features.html#logging_recovery>
 [12]: <https://github.com/prrvchr/H2dbOOo/>
 [13]: <https://github.com/prrvchr/H2dbOOo/issues/new>
-[14]: <https://prrvchr.github.io/jdbcDriverOOo/#requirement>
-[15]: <https://bugs.documentfoundation.org/show_bug.cgi?id=156471>
-[16]: <https://gerrit.libreoffice.org/c/core/+/154989>
-[17]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
-[18]: <https://prrvchr.github.io/jdbcDriverOOo>
-[19]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
-[20]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
-[21]: <img/H2dbOOo.svg#middle>
-[22]: <https://github.com/prrvchr/H2dbOOo/releases/latest/download/H2dbOOo.oxt>
-[23]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.2.3#right>
-[24]: <img/H2dbOOo-1.png>
-[25]: <img/H2dbOOo-2.png>
-[26]: <img/H2dbOOo-3.png>
-[27]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/Driver.html>
-[28]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XConnection.html>
-[29]: <https://github.com/prrvchr/H2dbOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
-[30]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
-[31]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
-[32]: <https://github.com/LibreOffice/loeclipse>
-[33]: <https://adoptium.net/temurin/releases/?version=8&package=jdk>
-[34]: <https://ant.apache.org/manual/install.html>
-[35]: <https://downloadarchive.documentfoundation.org/libreoffice/old/7.6.7.2/>
-[36]: <https://github.com/prrvchr/H2dbOOo.git>
-[37]: <https://pypi.org/project/packaging/>
-[38]: <https://pypi.org/project/setuptools/>
-[39]: <https://github.com/prrvchr/HyperSQLOOo/issues/2>
-[40]: <https://github.com/LibreOffice/loeclipse/pull/152>
-[41]: <https://github.com/LibreOffice/loeclipse/pull/157>
-[42]: <https://prrvchr.github.io/H2dbOOo/README_fr#comment-cr%C3%A9er-lextension>
+[14]: <https://github.com/sponsors/prrvchr>
+[15]: <https://appdefensealliance.dev/casa>
+[16]: <https://prrvchr.github.io/jdbcDriverOOo/#requirement>
+[17]: <https://bugs.documentfoundation.org/show_bug.cgi?id=156471>
+[18]: <https://gerrit.libreoffice.org/c/core/+/154989>
+[20]: <https://prrvchr.github.io/jdbcDriverOOo/img/jdbcDriverOOo.svg#middle>
+[21]: <https://prrvchr.github.io/jdbcDriverOOo>
+[22]: <https://github.com/prrvchr/jdbcDriverOOo/releases/latest/download/jdbcDriverOOo.oxt>
+[23]: <https://img.shields.io/github/v/tag/prrvchr/jdbcDriverOOo?label=latest#right>
+[24]: <img/H2dbOOo.svg#middle>
+[25]: <https://github.com/prrvchr/H2dbOOo/releases/latest/download/H2dbOOo.oxt>
+[26]: <https://img.shields.io/github/downloads/prrvchr/H2dbOOo/latest/total?label=v1.3.0#right>
+[27]: <img/H2dbOOo-1.png>
+[28]: <img/H2dbOOo-2.png>
+[29]: <img/H2dbOOo-3.png>
+[30]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/Driver.html>
+[31]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/sdbc/XConnection.html>
+[32]: <https://github.com/prrvchr/H2dbOOo/blob/main/uno/lib/uno/embedded/documenthandler.py>
+[33]: <https://www.openoffice.org/api/docs/common/ref/com/sun/star/util/XCloseListener.html>
+[34]: <http://www.openoffice.org/api/docs/common/ref/com/sun/star/document/XStorageChangeListener.html>
+[35]: <https://github.com/LibreOffice/loeclipse>
+[36]: <https://adoptium.net/temurin/releases/?version=8&package=jdk>
+[37]: <https://ant.apache.org/manual/install.html>
+[38]: <https://downloadarchive.documentfoundation.org/libreoffice/old/7.6.7.2/>
+[39]: <https://github.com/prrvchr/H2dbOOo.git>
+[40]: <https://pypi.org/project/packaging/>
+[41]: <https://pypi.org/project/setuptools/>
+[42]: <https://github.com/prrvchr/HyperSQLOOo/issues/2>
+[43]: <https://github.com/LibreOffice/loeclipse/pull/152>
+[44]: <https://github.com/LibreOffice/loeclipse/pull/157>
+[45]: <https://prrvchr.github.io/H2dbOOo/README_fr#comment-cr%C3%A9er-lextension>
