@@ -24,11 +24,10 @@
 ║                                                                                    ║
 ╚════════════════════════════════════════════════════════════════════════════════════╝
 -->
+<!DOCTYPE oor:component-schema SYSTEM "component-schema.dtd">
 <oor:component-schema
-  xml:lang="en-US"
   xmlns:oor="http://openoffice.org/2001/registry"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   oor:package="io.github.prrvchr"
   oor:name="H2dbOOo">
   <component>
@@ -37,3 +36,4 @@
     <prop oor:name="ShowSystemTable" oor:type="xs:boolean"/>
   </component>
 </oor:component-schema>
+
