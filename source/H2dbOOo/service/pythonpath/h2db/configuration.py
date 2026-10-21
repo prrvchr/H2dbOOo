@@ -1,5 +1,5 @@
 #!
-# -*- coding: utf_8 -*-
+# -*- coding: utf-8 -*-
 
 """
 ╔════════════════════════════════════════════════════════════════════════════════════╗
@@ -29,17 +29,16 @@
 
 # General configuration
 g_catalog = 'H2'
-g_dbname = '%sdb' % g_catalog
-g_extension = '%sOOo' % g_dbname
-g_identifier = 'io.github.prrvchr.%s' % g_extension
-g_service = '%s.Driver' % g_identifier
-g_resource = 'resource'
+g_dbname = f'{g_catalog}db'
+g_extension = f'{g_dbname}OOo'
+g_identifier = f'io.github.prrvchr.{g_extension}'
+g_service = f'{g_identifier}.Driver'
+g_defaultlog = f'{g_dbname}Logger'
+g_errorlog = f'{g_dbname}Error'
 g_basename = 'Driver'
-g_defaultlog = '%sLogger' % g_dbname
-g_errorlog = '%sError'  % g_dbname
 
 # DataBase configuration
-g_protocol = 'xdbc:h2:'
+g_protocol = 'juda:h2:'
 g_url = 'sdbc:embedded:h2'
 g_user = 'SA'
 g_options = ''
@@ -49,9 +48,6 @@ g_path = True
 g_driver = ''
 g_shutdown = ''
 
-g_disabled = ()
-g_memory = 'xdbc:h2:mem:dbversion'
+g_memory = 'juda:h2:mem:dbversion'
 
-# LibreOffice configuration
-g_lover = '24.2'
-
+g_version = '1.3.0'
