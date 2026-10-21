@@ -39,7 +39,7 @@ g_defaultlog = '%sLogger' % g_dbname
 g_errorlog = '%sError'  % g_dbname
 
 # DataBase configuration
-g_protocol = 'xdbc:h2:'
+g_protocol = 'juda:h2:'
 g_url = 'sdbc:embedded:h2'
 g_user = 'SA'
 g_options = ''
@@ -50,8 +50,10 @@ g_driver = ''
 g_shutdown = ''
 
 g_disabled = ()
-g_memory = 'xdbc:h2:mem:dbversion'
+g_memory = 'juda:h2:mem:dbversion'
 
-# LibreOffice configuration
-g_lover = '24.2'
+# Setup frame and Job name
+g_setup = '%s.Setup' % g_extension
 
+class State:
+    restart = False
